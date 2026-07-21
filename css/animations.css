@@ -1,0 +1,164 @@
+/* ==========================================================================
+   🎂 Aradhana Birthday Website - 60 FPS GPU-Accelerated Animations
+   ========================================================================== */
+
+/* Aurora Background Waves */
+@keyframes auroraWaves {
+    0% {
+        transform: translate(0, 0) scale(1) rotate(0deg);
+    }
+    50% {
+        transform: translate(4%, 3%) scale(1.08) rotate(2deg);
+    }
+    100% {
+        transform: translate(-3%, -2%) scale(1.02) rotate(-1deg);
+    }
+}
+
+/* Gentle Floating Animation for Hearts & Stars */
+@keyframes floatUp {
+    0% {
+        transform: translateY(110vh) rotate(0deg) scale(0.8);
+        opacity: 0;
+    }
+    10% {
+        opacity: 0.85;
+    }
+    90% {
+        opacity: 0.85;
+    }
+    100% {
+        transform: translateY(-20vh) rotate(360deg) scale(1.2);
+        opacity: 0;
+    }
+}
+
+/* Pulse & Glow Effect */
+@keyframes pulseGlow {
+    0%, 100% {
+        transform: scale(1);
+        filter: drop-shadow(0 0 8px rgba(255, 56, 129, 0.4));
+    }
+    50% {
+        transform: scale(1.05);
+        filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.8));
+    }
+}
+.pulse-glow {
+    animation: pulseGlow 2.5s infinite ease-in-out;
+}
+
+/* Heartbeat Pulse for Hero Name Heart */
+@keyframes heartPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    14% {
+        transform: scale(1.3);
+    }
+    28% {
+        transform: scale(1);
+    }
+    42% {
+        transform: scale(1.3);
+    }
+    70% {
+        transform: scale(1);
+    }
+}
+.heart-pulse {
+    display: inline-block;
+    animation: heartPulse 1.8s infinite cubic-bezier(0.215, 0.61, 0.355, 1);
+}
+
+/* Bounce Gentle for Gift & Icons */
+@keyframes bounceGentle {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Flame Flicker for Cake Candles */
+@keyframes flameFlicker {
+    0% {
+        transform: scaleY(1) rotate(-1deg);
+        filter: drop-shadow(0 0 10px #ffd700);
+    }
+    100% {
+        transform: scaleY(1.12) scaleX(0.92) rotate(2deg);
+        filter: drop-shadow(0 0 16px #ff8c00);
+    }
+}
+
+/* Smoke Rising After Candle Blown Out */
+@keyframes smokeRise {
+    0% {
+        opacity: 0.7;
+        transform: translateY(0) scale(1);
+    }
+    100% {
+        opacity: 0;
+        transform: translateY(-60px) scale(3) rotate(25deg);
+    }
+}
+
+/* Fade In & Scale for Modals and Tabs */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(12px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounceIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.3);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    70% {
+        transform: scale(0.95);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+.bounce-in {
+    animation: bounceIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275) forwards;
+}
+
+/* Gradient Text Shimmer Animation */
+@keyframes gradientShift {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+.gradient-text {
+    background-size: 200% 200%;
+    animation: gradientShift 6s ease infinite;
+}
+
+/* Accessibility: Reduced Motion Support */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

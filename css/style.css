@@ -1,0 +1,1417 @@
+/* ==========================================================================
+   🎂 Aradhana Birthday Website - Core Design Tokens & Luxury Style System
+   Theme: Luxury Romantic (Pink, Rose Gold, Soft Red, Purple, Golden Glow & Light Sky Blue)
+   ========================================================================== */
+
+:root {
+    /* Color Palette - Luxury Pink, Rose Gold & Celestial Sky Blue Aurora */
+    --color-bg-primary: #0f0516;
+    --color-bg-secondary: #1d0b2e;
+    --color-pink-soft: #ff85b3;
+    --color-pink-vibrant: #ff3881;
+    --color-rose-gold: #e8a598;
+    --color-rose-gold-light: #fbe0dc;
+    --color-gold-glow: #ffd700;
+    --color-purple-deep: #2c0e4a;
+    --color-purple-neon: #a855f7;
+    --color-red-romantic: #e11d48;
+    --color-sky-blue: #38b6ff;
+    --color-sky-blue-light: #a6e3e9;
+    --color-azure-glow: #00f2fe;
+    
+    /* Typography */
+    --font-script-luxury: 'Great Vibes', 'Dancing Script', cursive;
+    --font-serif-title: 'Cinzel', 'Playfair Display', serif;
+    --font-body: 'Outfit', 'Poppins', sans-serif;
+    
+    /* Glassmorphism Tokens */
+    --glass-bg: rgba(255, 255, 255, 0.08);
+    --glass-bg-hover: rgba(255, 255, 255, 0.14);
+    --glass-border: rgba(166, 227, 233, 0.22);
+    --glass-shadow: 0 16px 32px rgba(0, 0, 0, 0.4);
+    --glass-blur: blur(16px);
+    
+    /* Gradients */
+    --gradient-luxury: linear-gradient(135deg, var(--color-pink-vibrant), var(--color-sky-blue), var(--color-purple-neon), var(--color-gold-glow));
+    --gradient-rose-gold: linear-gradient(135deg, var(--color-rose-gold), var(--color-sky-blue-light), var(--color-pink-soft));
+    --gradient-sky-aurora: linear-gradient(135deg, var(--color-sky-blue), var(--color-pink-vibrant), var(--color-purple-neon));
+    
+    /* Transition Defaults */
+    --transition-smooth: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    --transition-fast: all 0.2s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Day/Night Theme Toggle Override (Day/Light Romantic Sky Blue Aurora Mode) */
+html[data-theme="day-romantic"] {
+    --color-bg-primary: #f0f9ff;
+    --color-bg-secondary: #e6f4ff;
+    --glass-bg: rgba(255, 255, 255, 0.75);
+    --glass-bg-hover: rgba(255, 255, 255, 0.9);
+    --glass-border: rgba(56, 182, 255, 0.35);
+    --glass-shadow: 0 16px 32px rgba(56, 182, 255, 0.18);
+}
+
+/* ==========================================================================
+   Base & Reset
+   ========================================================================== */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-font-smoothing: antialiased;
+}
+
+html, body {
+    width: 100%;
+    height: 100%;
+    overflow-x: hidden;
+    background-color: var(--color-bg-primary);
+    color: #ffffff;
+    font-family: var(--font-body);
+    transition: background-color 0.6s ease;
+    cursor: default;
+}
+
+html[data-theme="day-romantic"] body {
+    color: #2d1b24;
+}
+
+/* Custom Selection & Scrollbars */
+::selection {
+    background: var(--color-pink-vibrant);
+    color: #ffffff;
+}
+
+::-webkit-scrollbar {
+    width: 8px;
+}
+::-webkit-scrollbar-track {
+    background: var(--color-bg-primary);
+}
+::-webkit-scrollbar-thumb {
+    background: var(--color-pink-vibrant);
+    border-radius: 4px;
+}
+
+/* ==========================================================================
+   Background Canvas & Aurora Layers
+   ========================================================================== */
+.background-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: 1;
+    pointer-events: none;
+}
+
+.aurora-layer {
+    position: fixed;
+    top: -50%;
+    left: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle at 25% 35%, rgba(255, 56, 129, 0.22), transparent 45%),
+                radial-gradient(circle at 75% 35%, rgba(56, 182, 255, 0.24), transparent 48%),
+                radial-gradient(circle at 50% 65%, rgba(168, 85, 247, 0.20), transparent 50%),
+                radial-gradient(circle at 85% 80%, rgba(0, 242, 254, 0.18), transparent 45%),
+                radial-gradient(circle at 35% 80%, rgba(255, 215, 0, 0.14), transparent 50%);
+    z-index: 0;
+    pointer-events: none;
+    filter: blur(80px);
+    animation: auroraWaves 25s infinite alternate ease-in-out;
+}
+
+.floating-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 2;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+/* ==========================================================================
+   Custom Heart Cursor & Trails
+   ========================================================================== */
+.heart-cursor {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 32px;
+    height: 32px;
+    font-size: 24px;
+    pointer-events: none;
+    z-index: 99999;
+    transform: translate(-50%, -50%);
+    transition: transform 0.08s ease-out;
+    filter: drop-shadow(0 0 10px var(--color-pink-vibrant));
+}
+
+.cursor-canvas {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    pointer-events: none;
+    z-index: 99998;
+}
+
+/* ==========================================================================
+   Luxury Loading Screen Overlay
+   ========================================================================== */
+.loading-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #2c0e4a, #0f0516);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    transition: opacity 0.8s ease, visibility 0.8s ease;
+}
+
+.loading-overlay.fade-out {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.loading-content {
+    text-align: center;
+    max-width: 450px;
+    padding: 2rem;
+}
+
+.loading-title {
+    font-family: var(--font-serif-title);
+    font-size: 2rem;
+    background: var(--gradient-rose-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin: 1.5rem 0 0.8rem;
+}
+
+.loading-status {
+    font-size: 1.1rem;
+    color: var(--color-rose-gold);
+    margin-bottom: 1.5rem;
+}
+
+.loading-bar-wrapper {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 0.5rem;
+    border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.loading-progress-bar {
+    width: 0%;
+    height: 100%;
+    background: var(--gradient-luxury);
+    transition: width 0.3s ease;
+    box-shadow: 0 0 12px var(--color-pink-vibrant);
+}
+
+.loading-percentage {
+    font-weight: 600;
+    color: var(--color-gold-glow);
+    font-size: 1.1rem;
+}
+
+/* Gift Box Loader Animation */
+.gift-box-loader {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    animation: bounceGentle 2s infinite ease-in-out;
+}
+.gift-lid {
+    width: 86px;
+    height: 20px;
+    background: var(--gradient-luxury);
+    border-radius: 4px;
+    position: absolute;
+    top: 15px;
+    left: -3px;
+    z-index: 2;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+.gift-body {
+    width: 80px;
+    height: 60px;
+    background: #ff3881;
+    border-radius: 0 0 6px 6px;
+    position: absolute;
+    top: 30px;
+    left: 0;
+}
+.gift-ribbon-v {
+    width: 14px;
+    height: 75px;
+    background: var(--color-gold-glow);
+    position: absolute;
+    top: 15px;
+    left: 33px;
+    z-index: 3;
+}
+.gift-ribbon-h {
+    width: 80px;
+    height: 14px;
+    background: var(--color-gold-glow);
+    position: absolute;
+    top: 50px;
+    left: 0;
+    z-index: 3;
+}
+.gift-bow {
+    font-size: 32px;
+    position: absolute;
+    top: -15px;
+    left: 24px;
+    z-index: 4;
+}
+
+/* ==========================================================================
+   Floating Audio Control & Visualizer Widget
+   ========================================================================== */
+.audio-widget {
+    position: fixed;
+    bottom: 24px;
+    right: 24px;
+    z-index: 10000;
+    padding: 0.6rem 1.2rem;
+    border-radius: 50px;
+    backdrop-filter: var(--glass-blur);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    transition: var(--transition-smooth);
+}
+
+.audio-controls-row {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+}
+
+.audio-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 2px;
+}
+
+.audio-track-name {
+    font-size: 0.75rem;
+    font-weight: 500;
+    color: var(--color-rose-gold-light);
+    max-width: 140px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
+#music-visualizer-canvas {
+    height: 20px;
+    width: 90px;
+}
+
+.volume-slider-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+#volume-slider {
+    width: 70px;
+    accent-color: var(--color-pink-vibrant);
+    cursor: pointer;
+}
+
+/* ==========================================================================
+   Cinematic Navigation Bar
+   ========================================================================== */
+.glass-nav {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    z-index: 10000;
+    padding: 0.5rem 1.5rem;
+    border-radius: 50px;
+    backdrop-filter: var(--glass-blur);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+    max-width: 95vw;
+}
+
+.nav-brand span {
+    font-family: var(--font-script-luxury);
+    font-size: 1.5rem;
+    background: var(--gradient-rose-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    font-weight: 700;
+}
+
+.nav-pills {
+    display: flex;
+    list-style: none;
+    gap: 0.5rem;
+}
+
+.nav-pill {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.75);
+    font-family: var(--font-body);
+    font-size: 0.85rem;
+    font-weight: 500;
+    padding: 0.5rem 1rem;
+    border-radius: 25px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
+}
+
+.pill-icon {
+    font-size: 1.05rem;
+    line-height: 1;
+}
+
+html[data-theme="day-romantic"] .nav-pill {
+    color: rgba(45, 27, 36, 0.8);
+}
+
+.nav-pill:hover, .nav-pill.active {
+    background: var(--color-pink-vibrant);
+    color: #ffffff;
+    box-shadow: 0 4px 18px rgba(255, 56, 129, 0.5), 0 0 28px rgba(56, 182, 255, 0.45);
+    transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   Main App Viewport & Page Transitions
+   ========================================================================== */
+#app-viewport {
+    position: relative;
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+}
+
+.page-section {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    overflow-y: auto;
+    padding: 110px 2rem 100px;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    transition: opacity 0.6s cubic-bezier(0.16, 1, 0.3, 1), transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+    transform: scale(0.96) translateY(20px);
+}
+
+.page-section.active-page {
+    opacity: 1;
+    visibility: visible;
+    pointer-events: auto;
+    transform: scale(1) translateY(0);
+}
+
+.page-inner-content {
+    max-width: 1200px;
+    width: 100%;
+    margin: 0 auto;
+    text-align: center;
+}
+
+/* ==========================================================================
+   Glassmorphism Components & Buttons
+   ========================================================================== */
+.glass-card {
+    backdrop-filter: var(--glass-blur);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    box-shadow: var(--glass-shadow);
+    border-radius: 24px;
+    padding: 2rem;
+    transition: var(--transition-smooth);
+}
+
+.glass-pill {
+    backdrop-filter: var(--glass-blur);
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    padding: 0.5rem 1.2rem;
+    border-radius: 50px;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.6rem;
+}
+
+.btn-primary, .btn-secondary, .btn-text {
+    font-family: var(--font-body);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.9rem 2rem;
+    border-radius: 50px;
+    cursor: pointer;
+    border: none;
+    transition: var(--transition-fast);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn-primary {
+    background: var(--gradient-luxury);
+    color: #ffffff;
+    box-shadow: 0 8px 24px rgba(255, 56, 129, 0.45), 0 0 25px rgba(56, 182, 255, 0.35);
+}
+
+.btn-primary:hover {
+    transform: translateY(-3px) scale(1.03);
+    box-shadow: 0 12px 32px rgba(255, 56, 129, 0.65), 0 0 35px rgba(56, 182, 255, 0.55);
+}
+
+.btn-secondary {
+    background: var(--glass-bg);
+    border: 1px solid var(--glass-border);
+    color: #ffffff;
+    backdrop-filter: var(--glass-blur);
+}
+
+html[data-theme="day-romantic"] .btn-secondary {
+    color: #2d1b24;
+}
+
+.btn-secondary:hover {
+    background: var(--glass-bg-hover);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0, 0, 0, 0.2);
+}
+
+.icon-btn {
+    width: 42px;
+    height: 42px;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: var(--transition-fast);
+    font-size: 1.2rem;
+}
+
+.icon-btn:hover {
+    background: var(--color-pink-vibrant);
+    transform: scale(1.1);
+}
+
+/* ==========================================================================
+   Page 1: Welcome Section
+   ========================================================================== */
+.hero-badge {
+    display: inline-block;
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    background: rgba(255, 56, 129, 0.15);
+    border: 1px solid var(--color-pink-vibrant);
+    color: var(--color-rose-gold-light);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 1.5rem;
+}
+
+.main-heading {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 1rem;
+}
+
+.script-subtitle {
+    font-family: var(--font-script-luxury);
+    font-size: 3.5rem;
+    color: var(--color-rose-gold);
+    line-height: 1.1;
+}
+
+.hero-name {
+    font-family: var(--font-serif-title);
+    font-size: 5rem;
+    font-weight: 900;
+    letter-spacing: 2px;
+    background: var(--gradient-luxury);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    text-shadow: 0 10px 30px rgba(255, 56, 129, 0.3);
+}
+
+.hero-tagline {
+    font-size: 1.25rem;
+    color: rgba(255, 255, 255, 0.85);
+    margin-bottom: 2.5rem;
+}
+
+html[data-theme="day-romantic"] .hero-tagline {
+    color: rgba(45, 27, 36, 0.85);
+}
+
+.countdown-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1.5rem;
+    max-width: 750px;
+    margin: 0 auto 1.5rem;
+}
+
+.countdown-unit {
+    padding: 1.5rem 1rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
+
+.cd-number {
+    font-family: var(--font-serif-title);
+    font-size: 3.2rem;
+    font-weight: 700;
+    background: var(--gradient-rose-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    line-height: 1;
+}
+
+.cd-label {
+    font-size: 0.95rem;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-top: 0.5rem;
+    color: var(--color-pink-soft);
+}
+
+.countdown-status-text {
+    font-size: 1.1rem;
+    color: var(--color-gold-glow);
+    margin-bottom: 1.5rem;
+    font-style: italic;
+}
+
+.live-time-badge {
+    margin-bottom: 2.5rem;
+    font-size: 0.95rem;
+    color: var(--color-rose-gold-light);
+}
+
+/* ==========================================================================
+   Page 2: Love Letter & Diary
+   ========================================================================== */
+.section-title {
+    font-family: var(--font-serif-title);
+    font-size: 3rem;
+    margin-bottom: 0.5rem;
+    background: var(--gradient-rose-gold);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.section-subtitle {
+    font-size: 1.15rem;
+    color: rgba(255, 255, 255, 0.8);
+    margin-bottom: 2.5rem;
+}
+
+html[data-theme="day-romantic"] .section-subtitle {
+    color: rgba(45, 27, 36, 0.8);
+}
+
+.lock-box {
+    max-width: 480px;
+    margin: 2rem auto;
+    text-align: center;
+}
+.lock-icon {
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+}
+.lock-input-group {
+    display: flex;
+    gap: 0.8rem;
+    margin: 1.5rem 0 1rem;
+    justify-content: center;
+}
+.lock-input-group input {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    padding: 0.8rem 1.2rem;
+    border-radius: 50px;
+    color: #fff;
+    font-size: 1rem;
+    outline: none;
+    width: 240px;
+    text-align: center;
+}
+.lock-input-group input:focus {
+    border-color: var(--color-pink-vibrant);
+    box-shadow: 0 0 10px rgba(255, 56, 129, 0.4);
+}
+
+.letter-card {
+    max-width: 850px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.letter-tabs-header {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.15);
+    padding-bottom: 1rem;
+}
+
+.letter-tab {
+    background: transparent;
+    border: none;
+    color: rgba(255, 255, 255, 0.7);
+    font-size: 1rem;
+    font-weight: 600;
+    padding: 0.6rem 1.5rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+
+.letter-tab.active, .letter-tab:hover {
+    background: var(--color-pink-vibrant);
+    color: #fff;
+    box-shadow: 0 0 12px rgba(255, 56, 129, 0.4);
+}
+
+.tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.tab-pane.active {
+    display: block;
+}
+
+.letter-paper {
+    padding: 2rem 2.5rem;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 16px;
+    border-left: 4px solid var(--color-pink-vibrant);
+}
+
+.letter-salutation {
+    font-family: var(--font-script-luxury);
+    font-size: 2.5rem;
+    color: var(--color-rose-gold);
+    margin-bottom: 1.5rem;
+}
+
+.typing-area {
+    font-size: 1.15rem;
+    line-height: 1.9;
+    color: #f8fafc;
+    min-height: 180px;
+    white-space: pre-wrap;
+}
+
+.letter-signature {
+    margin-top: 2rem;
+    font-size: 1.2rem;
+    font-style: italic;
+    text-align: right;
+    color: var(--color-rose-gold-light);
+}
+.letter-signature span {
+    font-family: var(--font-script-luxury);
+    font-size: 2.2rem;
+    color: var(--color-pink-soft);
+}
+
+/* Shayari Box */
+.shayari-display-box {
+    text-align: center;
+    padding: 2.5rem;
+}
+.shayari-decor-top, .shayari-decor-bottom {
+    font-size: 1.4rem;
+    color: var(--color-gold-glow);
+    margin: 1rem 0;
+}
+.shayari-text-content {
+    font-family: var(--font-serif-title);
+    font-size: 1.6rem;
+    line-height: 1.8;
+    color: #ffffff;
+    min-height: 120px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-style: italic;
+    padding: 1rem 0;
+}
+.shayari-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 1.5rem;
+    margin-top: 1.5rem;
+}
+.counter-badge {
+    background: rgba(255, 255, 255, 0.1);
+    padding: 0.4rem 1rem;
+    border-radius: 20px;
+    font-size: 0.9rem;
+    border: 1px solid var(--glass-border);
+}
+
+/* ==========================================================================
+   Page 3: Memory Gallery & Polaroids
+   ========================================================================== */
+.gallery-controls {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+.filter-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 0.6rem 1.4rem;
+    border-radius: 30px;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.filter-btn.active, .filter-btn:hover {
+    background: var(--color-pink-vibrant);
+    box-shadow: 0 0 15px rgba(255, 56, 129, 0.5);
+}
+
+.polaroid-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 2.5rem;
+    padding: 1rem 0;
+}
+
+.polaroid-card {
+    background: rgba(255, 255, 255, 0.95);
+    padding: 15px 15px 50px 15px;
+    border-radius: 8px;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.4s ease;
+    position: relative;
+    transform: rotate(var(--tilt-angle, 0deg));
+}
+
+.polaroid-card:hover {
+    transform: translateY(-12px) rotate(0deg) scale(1.04);
+    box-shadow: 0 25px 50px rgba(255, 56, 129, 0.5);
+    z-index: 5;
+}
+
+.polaroid-img {
+    width: 100%;
+    height: 250px;
+    object-fit: cover;
+    border-radius: 4px;
+    background: #111;
+}
+
+.polaroid-caption {
+    position: absolute;
+    bottom: 15px;
+    left: 0;
+    width: 100%;
+    text-align: center;
+    font-family: var(--font-script-luxury);
+    font-size: 1.6rem;
+    color: #2d1b24;
+}
+
+/* ==========================================================================
+   Page 4: Royal Gift & 3D Box
+   ========================================================================== */
+.gift-box-wrapper {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.gift-box-3d {
+    width: 200px;
+    height: 200px;
+    position: relative;
+    cursor: pointer;
+    transition: transform 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+    animation: bounceGentle 3s infinite ease-in-out;
+}
+
+.gift-box-3d:hover {
+    transform: scale(1.08) rotate(3deg);
+}
+
+.gift-box-lid {
+    width: 220px;
+    height: 45px;
+    background: var(--gradient-luxury);
+    border-radius: 10px;
+    position: absolute;
+    top: 0;
+    left: -10px;
+    z-index: 3;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+    transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gift-box-3d.opening .gift-box-lid {
+    transform: translateY(-120px) rotate(25deg);
+    opacity: 0;
+}
+
+.gift-bow-top {
+    font-size: 64px;
+    position: absolute;
+    top: -45px;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+.gift-box-base {
+    width: 200px;
+    height: 160px;
+    background: #ff2a7a;
+    border-radius: 0 0 12px 12px;
+    position: absolute;
+    top: 40px;
+    left: 0;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.5);
+    overflow: hidden;
+}
+
+.ribbon-vertical {
+    width: 35px;
+    height: 100%;
+    background: var(--color-gold-glow);
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.ribbon-horizontal {
+    width: 100%;
+    height: 35px;
+    background: var(--color-gold-glow);
+    position: absolute;
+    top: 50%;
+    left: 0;
+    transform: translateY(-50%);
+    box-shadow: 0 0 10px rgba(255, 215, 0, 0.5);
+}
+
+.gift-glow-aura {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 260px;
+    height: 260px;
+    background: radial-gradient(circle, rgba(255, 215, 0, 0.4), transparent 70%);
+    transform: translate(-50%, -50%);
+    z-index: 0;
+    filter: blur(20px);
+}
+
+.surprises-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 2rem;
+}
+
+.surprise-item {
+    padding: 2rem 1.5rem;
+    transition: var(--transition-smooth);
+}
+.surprise-item:hover {
+    transform: translateY(-8px);
+    border-color: var(--color-pink-vibrant);
+    box-shadow: 0 15px 35px rgba(255, 56, 129, 0.3);
+}
+.surprise-icon {
+    font-size: 3rem;
+    margin-bottom: 1rem;
+}
+.highlight-gift {
+    border: 2px solid var(--color-gold-glow);
+    background: rgba(255, 215, 0, 0.1);
+}
+
+/* ==========================================================================
+   Page 5: Wishes, Thoughts & Quotes
+   ========================================================================== */
+.wishes-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2.5rem;
+    flex-wrap: wrap;
+}
+.wish-tab-btn {
+    background: rgba(255, 255, 255, 0.1);
+    border: 1px solid var(--glass-border);
+    color: #fff;
+    padding: 0.8rem 1.6rem;
+    border-radius: 50px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.wish-tab-btn.active, .wish-tab-btn:hover {
+    background: var(--gradient-luxury);
+    box-shadow: 0 0 20px rgba(255, 56, 129, 0.5);
+}
+
+.wish-tab-pane {
+    display: none;
+    animation: fadeIn 0.4s ease;
+}
+.wish-tab-pane.active {
+    display: block;
+}
+
+.cards-grid-20 {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(180px, 1fr));
+    gap: 1.5rem;
+}
+
+.wish-card-mini {
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid var(--glass-border);
+    border-radius: 16px;
+    padding: 1.5rem 1rem;
+    cursor: pointer;
+    transition: var(--transition-fast);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.6rem;
+}
+.wish-card-mini:hover {
+    background: rgba(255, 56, 129, 0.2);
+    border-color: var(--color-pink-vibrant);
+    transform: translateY(-6px) scale(1.05);
+}
+.wish-card-mini.opened {
+    background: rgba(255, 215, 0, 0.15);
+    border-color: var(--color-gold-glow);
+}
+.mini-icon {
+    font-size: 2.2rem;
+}
+
+/* ==========================================================================
+   Page 6: Love Timeline
+   ========================================================================== */
+.timeline-container {
+    position: relative;
+    max-width: 900px;
+    margin: 3rem auto;
+    padding: 2rem 0;
+}
+
+.timeline-line {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    width: 4px;
+    background: rgba(255, 255, 255, 0.15);
+    transform: translateX(-50%);
+    border-radius: 4px;
+}
+
+.timeline-progress {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--gradient-luxury);
+    border-radius: 4px;
+    box-shadow: 0 0 12px var(--color-pink-vibrant);
+}
+
+.timeline-node {
+    position: relative;
+    width: 50%;
+    padding: 1.5rem 2.5rem;
+    margin-bottom: 3rem;
+    display: flex;
+    flex-direction: column;
+}
+.timeline-node.left {
+    left: 0;
+    align-items: flex-end;
+    text-align: right;
+}
+.timeline-node.right {
+    left: 50%;
+    align-items: flex-start;
+    text-align: left;
+}
+
+.timeline-dot {
+    position: absolute;
+    top: 2rem;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--gradient-luxury);
+    border: 3px solid #0f0516;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.3rem;
+    z-index: 5;
+    box-shadow: 0 0 15px rgba(255, 56, 129, 0.6);
+}
+.timeline-node.left .timeline-dot {
+    right: -22px;
+}
+.timeline-node.right .timeline-dot {
+    left: -22px;
+}
+
+.timeline-card {
+    width: 100%;
+    padding: 1.8rem;
+    position: relative;
+}
+.node-date {
+    display: inline-block;
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-gold-glow);
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 0.5rem;
+}
+.timeline-card h3 {
+    font-family: var(--font-serif-title);
+    font-size: 1.4rem;
+    margin-bottom: 0.6rem;
+    color: var(--color-rose-gold-light);
+}
+
+/* ==========================================================================
+   Page 7: Cake & Celebration
+   ========================================================================== */
+.cake-stage {
+    margin: 3rem 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.cake-3d {
+    position: relative;
+    width: 280px;
+    height: 320px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+.cake-candles {
+    display: flex;
+    gap: 1.5rem;
+    position: absolute;
+    top: 25px;
+    z-index: 5;
+}
+
+.candle {
+    width: 14px;
+    height: 55px;
+    background: repeating-linear-gradient(45deg, #fff, #fff 10px, #ff3881 10px, #ff3881 20px);
+    border-radius: 4px;
+    position: relative;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.flame {
+    width: 16px;
+    height: 26px;
+    background: radial-gradient(ellipse at bottom, #fff, #ffd700, #ff8c00, transparent);
+    border-radius: 50% 50% 35% 35%;
+    position: absolute;
+    top: -26px;
+    left: -1px;
+    animation: flameFlicker 0.15s infinite alternate ease-in-out;
+    filter: drop-shadow(0 0 12px #ffd700);
+}
+
+.flame.blown-out {
+    opacity: 0;
+    transform: scale(0);
+    transition: all 0.4s ease;
+}
+
+.smoke {
+    position: absolute;
+    top: -35px;
+    left: 2px;
+    width: 10px;
+    height: 30px;
+    background: rgba(255, 255, 255, 0.4);
+    border-radius: 10px;
+    filter: blur(4px);
+    opacity: 0;
+    pointer-events: none;
+}
+
+.flame.blown-out + .smoke {
+    animation: smokeRise 2s forwards ease-out;
+}
+
+.cake-tier {
+    border-radius: 12px 12px 4px 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    box-shadow: 0 10px 25px rgba(0,0,0,0.4);
+}
+
+.tier-top {
+    width: 160px;
+    height: 70px;
+    background: linear-gradient(to bottom, #ff9ebb, #ff5e8e);
+    z-index: 3;
+    border-top: 6px solid #fff;
+}
+.tier-middle {
+    width: 220px;
+    height: 85px;
+    background: linear-gradient(to bottom, #ff719e, #ff3881);
+    z-index: 2;
+    border-top: 8px solid #fff2f6;
+}
+.tier-bottom {
+    width: 280px;
+    height: 100px;
+    background: linear-gradient(to bottom, #f3286d, #b80f49);
+    z-index: 1;
+    border-top: 10px solid #fff;
+}
+
+.cake-text {
+    font-family: var(--font-script-luxury);
+    font-size: 1.8rem;
+    color: #fff;
+    text-shadow: 0 2px 5px rgba(0,0,0,0.3);
+}
+
+.cake-plate {
+    width: 330px;
+    height: 18px;
+    background: var(--gradient-rose-gold);
+    border-radius: 50%;
+    box-shadow: 0 15px 30px rgba(0,0,0,0.6);
+    margin-top: -5px;
+}
+
+.cake-controls {
+    display: flex;
+    gap: 1rem;
+    margin-top: 2.5rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.final-msg-box {
+    max-width: 750px;
+    margin: 3rem auto 1rem;
+}
+.large-heart {
+    font-size: 5rem;
+    margin-bottom: 1rem;
+    display: inline-block;
+}
+.final-title {
+    font-family: var(--font-serif-title);
+    font-size: 2.5rem;
+    background: var(--gradient-luxury);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    margin-bottom: 1rem;
+}
+.final-text {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #f8fafc;
+    margin-bottom: 2rem;
+    font-style: italic;
+}
+
+.celebration-actions {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+/* ==========================================================================
+   Modals & Lightboxes
+   ========================================================================== */
+.modal-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: rgba(15, 5, 22, 0.85);
+    backdrop-filter: blur(12px);
+    z-index: 100000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1.5rem;
+    transition: opacity 0.4s ease, visibility 0.4s ease;
+}
+
+.modal-overlay.hidden {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
+
+.close-modal-btn {
+    position: absolute;
+    top: 15px;
+    right: 20px;
+    font-size: 2.2rem;
+    background: transparent;
+    border: none;
+    color: #fff;
+    cursor: pointer;
+    transition: var(--transition-fast);
+}
+.close-modal-btn:hover {
+    color: var(--color-pink-vibrant);
+    transform: scale(1.2);
+}
+
+.card-modal-content, .ring-modal-content {
+    max-width: 520px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    padding: 3rem 2rem 2.5rem;
+}
+
+.card-modal-icon {
+    font-size: 4rem;
+    margin-bottom: 1rem;
+}
+.card-modal-title {
+    font-family: var(--font-serif-title);
+    font-size: 1.8rem;
+    color: var(--color-gold-glow);
+    margin-bottom: 1rem;
+}
+.card-modal-body {
+    font-size: 1.25rem;
+    line-height: 1.8;
+    color: #fff;
+    margin-bottom: 2rem;
+}
+
+.lightbox-content {
+    max-width: 800px;
+    width: 100%;
+    position: relative;
+    text-align: center;
+}
+.lightbox-img-wrapper img {
+    max-width: 100%;
+    max-height: 65vh;
+    border-radius: 8px;
+    box-shadow: 0 20px 40px rgba(0,0,0,0.6);
+}
+.lightbox-caption {
+    font-family: var(--font-script-luxury);
+    font-size: 2.2rem;
+    color: var(--color-rose-gold);
+    margin-top: 1rem;
+}
+/* ==========================================================================
+   🔒 12:00 AM MIDNIGHT GATEKEEPER LOCK SYSTEM (`Jab 12 Baje Tab Hi Open Ho`)
+   ========================================================================== */
+body.gate-locked #cinematic-nav {
+    transform: translateY(120%);
+    opacity: 0;
+    pointer-events: none;
+    transition: transform 0.8s cubic-bezier(0.34, 1.56, 0.64, 1), opacity 0.6s ease;
+}
+body.gate-locked #begin-journey-btn {
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(56, 182, 255, 0.18));
+    border: 1px dashed rgba(56, 182, 255, 0.65);
+    box-shadow: 0 0 20px rgba(56, 182, 255, 0.25);
+    cursor: pointer;
+}
+body.gate-locked #begin-journey-btn span {
+    color: var(--color-sky-blue);
+}
+@keyframes lockPulse {
+    0%, 100% { transform: scale(1); filter: drop-shadow(0 0 10px rgba(56, 182, 255, 0.6)); }
+    50% { transform: scale(1.08); filter: drop-shadow(0 0 22px rgba(255, 182, 193, 0.8)); }
+}
+#midnight-lock-modal .diamond-ring {
+    animation: lockPulse 2s infinite ease-in-out;
+}
