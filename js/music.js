@@ -11,18 +11,12 @@ class RomanticAudioEngine {
         this.analyser = null;
         this.visualizerCanvas = document.getElementById('music-visualizer-canvas');
         this.visualizerCtx = this.visualizerCanvas ? this.visualizerCanvas.getContext('2d') : null;
-        this.sequenceInterval = null;
-        this.noteIndex = 0;
         
-        // Romantic chord progression frequencies (C Major / A Minor celestial ambient)
-        this.chords = [
-            [261.63, 329.63, 392.00, 523.25], // C Major
-            [220.00, 261.63, 329.63, 440.00], // A Minor
-            [174.61, 220.00, 261.63, 349.23], // F Major
-            [196.00, 246.94, 293.66, 392.00]  // G Major
-        ];
-
-        this.melodyNotes = [523.25, 587.33, 659.25, 698.46, 783.99, 880.00, 987.77, 1046.50];
+        const audioPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
+        this.bgMusic = new Audio(audioPath);
+        this.bgMusic.loop = true;
+        this.bgMusic.volume = this.volume;
+        this.mediaSource = null;
 
         this.initEventListeners();
     }
@@ -37,8 +31,11 @@ class RomanticAudioEngine {
         if (volSlider) {
             volSlider.addEventListener('input', (e) => {
                 this.volume = parseFloat(e.target.value);
-                if (this.masterGain) {
+                if (this.masterGain && this.ctx) {
                     this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.1);
+                }
+                if (this.bgMusic && !this.mediaSource) {
+                    this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
                 }
             });
         }
@@ -57,9 +54,20 @@ class RomanticAudioEngine {
             this.masterGain.connect(this.analyser);
             this.analyser.connect(this.ctx.destination);
 
+            if (this.bgMusic && !this.mediaSource) {
+                try {
+                    this.mediaSource = this.ctx.createMediaElementSource(this.bgMusic);
+                    this.mediaSource.connect(this.masterGain);
+                    this.bgMusic.volume = 1.0;
+                } catch (e) {
+                    console.log('MediaElementSource connection error (falling back to direct audio):', e);
+                    this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
+                }
+            }
+
             this.startVisualizer();
         }
-        if (this.ctx.state === 'suspended') {
+        if (this.ctx && this.ctx.state === 'suspended') {
             this.ctx.resume();
         }
     }
@@ -75,68 +83,30 @@ class RomanticAudioEngine {
 
     startSymphony() {
         this.isPlaying = true;
+        this.initAudioContext();
         const toggleBtn = document.getElementById('music-toggle-btn');
         if (toggleBtn) {
             toggleBtn.innerHTML = '<span class="music-icon">⏸️</span>';
             toggleBtn.setAttribute('title', 'Pause Romantic Melody');
         }
 
-        this.playBackgroundPad();
-
-        // Sequence arpeggiated piano melody every 600ms
-        this.sequenceInterval = setInterval(() => {
-            if (!this.isPlaying) return;
-            
-            const currentChord = this.chords[Math.floor(this.noteIndex / 4) % this.chords.length];
-            const note = currentChord[this.noteIndex % currentChord.length];
-            
-            this.playSynthNote(note, 0.4, 'triangle');
-            
-            // Add gentle celestial high melody note occasionally
-            if (Math.random() > 0.4) {
-                const highNote = this.melodyNotes[Math.floor(Math.random() * this.melodyNotes.length)];
-                setTimeout(() => {
-                    if (this.isPlaying) this.playSynthNote(highNote, 0.18, 'sine');
-                }, 300);
-            }
-
-            this.noteIndex++;
-        }, 600);
+        if (this.bgMusic) {
+            this.bgMusic.play().catch(err => {
+                console.log('Playback prevented or waiting for interaction:', err);
+            });
+        }
     }
 
     stopSymphony() {
         this.isPlaying = false;
-        clearInterval(this.sequenceInterval);
+        if (this.bgMusic) {
+            this.bgMusic.pause();
+        }
         const toggleBtn = document.getElementById('music-toggle-btn');
         if (toggleBtn) {
             toggleBtn.innerHTML = '<span class="music-icon">🎵</span>';
             toggleBtn.setAttribute('title', 'Play Romantic Melody');
         }
-    }
-
-    playBackgroundPad() {
-        if (!this.isPlaying || !this.ctx) return;
-        const padOsc = this.ctx.createOscillator();
-        const padGain = this.ctx.createGain();
-        
-        padOsc.type = 'sine';
-        padOsc.frequency.value = 130.81; // Deep warm C3 pad
-        
-        padGain.gain.setValueAtTime(0.01, this.ctx.currentTime);
-        padGain.gain.exponentialRampToValueAtTime(0.12, this.ctx.currentTime + 3);
-        
-        padOsc.connect(padGain);
-        padGain.connect(this.masterGain);
-        padOsc.start();
-
-        // Stop pad if music pauses
-        const checkPad = setInterval(() => {
-            if (!this.isPlaying) {
-                padGain.gain.exponentialRampToValueAtTime(0.001, this.ctx.currentTime + 1);
-                setTimeout(() => padOsc.stop(), 1000);
-                clearInterval(checkPad);
-            }
-        }, 500);
     }
 
     playSynthNote(freq, duration, type = 'sine') {
