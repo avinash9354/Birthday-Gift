@@ -11,18 +11,19 @@ class RomanticAudioEngine {
         this.visualizerCanvas = document.getElementById('music-visualizer-canvas');
         this.visualizerCtx = this.visualizerCanvas ? this.visualizerCanvas.getContext('2d') : null;
         
-        const rawPath = 'assets/music/Happy Birthday To You Ji - Funny Hindi Birthday Song (Part 1) - Funzoa Mimi Teddy, Krsna Solo - Funzoa (128k).mp3';
-        const encodedPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
+        const primaryPath = 'assets/music/birthday-song.mp3';
+        const fallbackPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
         
-        this.bgMusic = new Audio(rawPath);
+        this.bgMusic = new Audio(primaryPath);
         this.bgMusic.loop = true;
         this.bgMusic.volume = this.volume;
         this.bgMusic.preload = 'auto';
+        this.bgMusic.load();
 
         this.bgMusic.addEventListener('error', () => {
-            console.warn('Attempting URL encoded audio path...');
-            if (this.bgMusic.src.indexOf('%20') === -1) {
-                this.bgMusic.src = encodedPath;
+            console.warn('Primary audio load failed, attempting fallback path...');
+            if (this.bgMusic.src.indexOf('Happy') === -1) {
+                this.bgMusic.src = fallbackPath;
                 this.bgMusic.load();
                 if (this.isPlaying) this.bgMusic.play().catch(() => {});
             }
@@ -89,25 +90,40 @@ class RomanticAudioEngine {
             toggleBtn.setAttribute('title', 'Pause Birthday Song');
         }
 
+        // Play instant celebratory chime on click so sound begins right away just like before
+        if (this.ctx) {
+            [523.25, 659.25, 783.99, 1046.50].forEach((note, idx) => {
+                setTimeout(() => this.playSynthNote(note, 0.35, 'triangle'), idx * 80);
+            });
+        }
+
         if (this.bgMusic) {
             this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
-            this.bgMusic.play().catch(err => {
-                console.log('Playback prevented or waiting for interaction:', err);
-                const resumeOnAction = () => {
-                    if (this.isPlaying && this.bgMusic.paused) {
-                        this.bgMusic.play().catch(() => {});
-                    }
-                    if (this.ctx && this.ctx.state === 'suspended') {
-                        this.ctx.resume();
-                    }
-                    document.removeEventListener('click', resumeOnAction);
-                    document.removeEventListener('keydown', resumeOnAction);
-                    document.removeEventListener('touchstart', resumeOnAction);
-                };
-                document.addEventListener('click', resumeOnAction);
-                document.addEventListener('keydown', resumeOnAction);
-                document.addEventListener('touchstart', resumeOnAction);
-            });
+            const attemptPlay = () => {
+                if (!this.isPlaying) return;
+                this.bgMusic.play().catch(err => {
+                    console.log('Playback prevented or waiting for interaction:', err);
+                    const resumeOnAction = () => {
+                        if (this.isPlaying && this.bgMusic.paused) {
+                            this.bgMusic.play().catch(() => {});
+                        }
+                        if (this.ctx && this.ctx.state === 'suspended') {
+                            this.ctx.resume();
+                        }
+                        document.removeEventListener('click', resumeOnAction);
+                        document.removeEventListener('keydown', resumeOnAction);
+                        document.removeEventListener('touchstart', resumeOnAction);
+                    };
+                    document.addEventListener('click', resumeOnAction);
+                    document.addEventListener('keydown', resumeOnAction);
+                    document.addEventListener('touchstart', resumeOnAction);
+                });
+            };
+
+            attemptPlay();
+            if (this.bgMusic.readyState < 2) {
+                this.bgMusic.addEventListener('canplay', attemptPlay, { once: true });
+            }
         }
     }
 
