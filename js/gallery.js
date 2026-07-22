@@ -1,20 +1,19 @@
-/**
  * 🎂 Aradhana Birthday Website - 3D Polaroid Memory Gallery & Lightbox Controller
- * Synthesizes high-aesthetic romantic illustrations & supports instant photo drop-in
+ * Synthesizes high-aesthetic celebration illustrations & supports instant photo drop-in
  */
 
 const GALLERY_MOMENTS_DATA = [
     {
         title: "The Golden Sunset",
-        caption: "Walking hand in hand as the evening sun painted the sky in rose gold just for us.",
-        category: "romantic",
+        caption: "Watching the peaceful evening sun paint the sky in breathtaking shades of rose gold and orange.",
+        category: "special",
         gradient: ["#ff3881", "#38b6ff"],
         emoji: "🌅",
         tilt: "-3deg"
     },
     {
         title: "Your Breathtaking Smile",
-        caption: "The moment you laughed so hard that your eyes sparkled like diamonds.",
+        caption: "The moments when you laugh so hard that your eyes sparkle with joy and happiness.",
         category: "smiles",
         gradient: ["#38b6ff", "#ff85b3"],
         emoji: "😊",
@@ -22,34 +21,34 @@ const GALLERY_MOMENTS_DATA = [
     },
     {
         title: "Starlight Wishes",
-        caption: "Whispering our grandest dreams under the canopy of a thousand twinkling stars.",
+        caption: "Making wonderful wishes for the future under the canopy of a thousand twinkling stars.",
         category: "dreams",
         gradient: ["#2c0e4a", "#00f2fe"],
         emoji: "🌌",
         tilt: "-2deg"
     },
     {
-        title: "Cozy Coffee Dates",
-        caption: "Warm cups of cappuccino and hours that flew by like wonderful seconds.",
-        category: "romantic",
+        title: "Cozy Gatherings",
+        caption: "Warm coffee gatherings and wonderful conversations with friends and family that fly by so fast.",
+        category: "special",
         gradient: ["#e8a598", "#38b6ff"],
         emoji: "☕",
         tilt: "3deg"
     },
     {
-        title: "Angel in the Rain",
-        caption: "Dancing joyfully under the gentle summer drizzle without a care in the world.",
+        title: "Joyful Days",
+        caption: "Enjoying the gentle summer breeze and rejoicing in the simple happiness of everyday life.",
         category: "smiles",
         gradient: ["#38b6ff", "#00f2fe"],
-        emoji: "🌧️",
+        emoji: "🎉",
         tilt: "-4deg"
     },
     {
-        title: "Our Forever Promise",
-        caption: "A sacred vow to support, cherish, and adore each other across all dimensions of time.",
+        title: "Family & Friends Bond",
+        caption: "A timeless promise from family and friends to support, celebrate, and care for you always.",
         category: "dreams",
         gradient: ["#00f2fe", "#ff3881"],
-        emoji: "💍",
+        emoji: "🎂",
         tilt: "2deg"
     }
 ];
@@ -111,7 +110,7 @@ class MemoryGalleryController {
         ctx.textBaseline = 'middle';
         ctx.fillText(emoji, 300, 220);
 
-        // Draw Romantic Title
+        // Draw Title
         ctx.font = 'bold 36px sans-serif';
         ctx.fillStyle = '#ffffff';
         ctx.shadowBlur = 10;

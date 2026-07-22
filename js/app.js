@@ -67,11 +67,11 @@ class BirthdayAppController {
         if (!this.loadingOverlay) return;
 
         const loadingPhrases = [
-            "Weaving aurora starlight & love spells...",
-            "Gathering 50 romantic quotes & 25 Hindi shayaris...",
+            "Weaving aurora starlight & magical wishes...",
+            "Gathering 50 inspiring blessings & 25 Hindi shayaris...",
             "Lighting candles on Aradhana's royal cake...",
             "Tuning celestial piano harmonies...",
-            "Opening the gates of our magical love journey..."
+            "Opening the gates of Aradhana's birthday wonderland..."
         ];
 
         let progress = 0;
@@ -157,7 +157,7 @@ class BirthdayAppController {
         const container = document.getElementById('floating-elements-container');
         if (!container) return;
 
-        const symbols = ['❤️', '💕', '💖', '💗', '✨', '🌹', '🌸', '⭐', '🦋'];
+        const symbols = ['✨', '🎉', '🎂', '💖', '🎁', '🌸', '⭐', '🦋', '🎈'];
 
         const createFloatingSymbol = () => {
             const el = document.createElement('div');

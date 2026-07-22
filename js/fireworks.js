@@ -184,7 +184,7 @@ class FireworksAndCakeSystem {
         }
 
         // Launch custom floating balloons with names
-        const balloonNames = ["Aradhana ❤️", "Queen of My Heart 👑", "Happy Birthday! 🎂", "My Love 💕", "22 July 2026 💖"];
+        const balloonNames = ["Aradhana ✨", "Happy Birthday! 🎂", "Joy & Happiness 🎉", "Best Wishes 🌸", "22 July 2026 ⭐"];
         balloonNames.forEach((text, i) => {
             setTimeout(() => {
                 this.balloons.push({
@@ -357,13 +357,13 @@ class FireworksAndCakeSystem {
         if (window.audioEngine) window.audioEngine.playBtnSound();
         if (navigator.share) {
             navigator.share({
-                title: "Happy Birthday Aradhana ❤️",
-                text: "Experience this world-class interactive love celebration dedicated to Aradhana!",
+                title: "Happy Birthday Aradhana ✨",
+                text: "Experience this grand birthday celebration dedicated to Aradhana!",
                 url: window.location.href
             }).catch(() => {});
         } else {
             navigator.clipboard.writeText(window.location.href);
-            alert("✨ Celebration link copied to clipboard! Share it with Aradhana with love ❤️");
+            alert("✨ Celebration link copied to clipboard! Share it with Aradhana & family! 🎉");
         }
     }
 
@@ -397,7 +397,7 @@ class FireworksAndCakeSystem {
         ctx.textAlign = 'center';
         ctx.shadowBlur = 15;
         ctx.shadowColor = 'rgba(255, 215, 0, 0.8)';
-        ctx.fillText("Happy Birthday My Love ❤️", canvas.width / 2, 170);
+        ctx.fillText("Happy Birthday Aradhana ✨", canvas.width / 2, 170);
 
         // Name
         ctx.fillStyle = '#ffffff';
@@ -409,17 +409,17 @@ class FireworksAndCakeSystem {
         // Date
         ctx.fillStyle = '#ff85b3';
         ctx.font = '36px sans-serif';
-        ctx.fillText("22 July 2026 • Royal Celebration", canvas.width / 2, 390);
+        ctx.fillText("22 July 2026 • Grand Celebration", canvas.width / 2, 390);
 
         // Quote
         ctx.fillStyle = '#fbe0dc';
         ctx.font = 'italic 34px serif';
-        ctx.fillText('"In all the world, there is no heart for me like yours."', canvas.width / 2, 510);
-        ctx.fillText('"You are my today and all of my tomorrows."', canvas.width / 2, 570);
+        ctx.fillText('"May your special day be surrounded with happiness,', canvas.width / 2, 510);
+        ctx.fillText('filled with laughter, and wrapped in warm blessings."', canvas.width / 2, 570);
 
         // Hearts & Signature
         ctx.font = '70px serif';
-        ctx.fillText("🌹 💕 👑 💕 🌹", canvas.width / 2, 680);
+        ctx.fillText("✨ 🎉 🎂 🎉 ✨", canvas.width / 2, 680);
 
         // Download PNG link
         const link = document.createElement('a');

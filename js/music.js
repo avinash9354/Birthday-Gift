@@ -1,5 +1,4 @@
-/**
- * 🎂 Aradhana Birthday Website - Web Audio API Romantic Symphony Generator & Audio Visualizer
+ * 🎂 Aradhana Birthday Website - Web Audio API & MP3 Birthday Symphony Generator & Audio Visualizer
  * Synthesizes multi-layered piano/synth ambient music + high-fidelity sound effects
  */
 
@@ -87,7 +86,7 @@ class RomanticAudioEngine {
         const toggleBtn = document.getElementById('music-toggle-btn');
         if (toggleBtn) {
             toggleBtn.innerHTML = '<span class="music-icon">⏸️</span>';
-            toggleBtn.setAttribute('title', 'Pause Romantic Melody');
+            toggleBtn.setAttribute('title', 'Pause Birthday Song');
         }
 
         if (this.bgMusic) {
@@ -105,7 +104,7 @@ class RomanticAudioEngine {
         const toggleBtn = document.getElementById('music-toggle-btn');
         if (toggleBtn) {
             toggleBtn.innerHTML = '<span class="music-icon">🎵</span>';
-            toggleBtn.setAttribute('title', 'Play Romantic Melody');
+            toggleBtn.setAttribute('title', 'Play Birthday Song');
         }
     }
 

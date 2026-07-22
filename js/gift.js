@@ -85,24 +85,24 @@ class LuxuryGiftBoxController {
 
         const messages = {
             message: {
-                title: "💌 Surprise Love Message",
-                body: '"Aradhana, every single day spent with you is a priceless gift. You bring profound harmony, pure unconditional love, and infinite warmth into my world. Thank you for being you."'
+                title: "💌 Surprise Birthday Message",
+                body: '"Aradhana, every single day spent with you is a blessing to everyone around you. You bring harmony, positive energy, and happiness to all your family and friends. Thank you for being you."'
             },
             card: {
-                title: "👑 Royal Love Card",
-                body: '"To Her Majesty Aradhana: May all your grandest dreams come true, may your heart forever overflow with serenity, and may your smile remain eternal."'
+                title: "👑 Royal Birthday Card",
+                body: '"To Aradhana: May all your grandest dreams come true, may your heart forever overflow with serenity, and may your smile remain bright always."'
             },
             chocolate: {
                 title: "🍫 Sweetest Swiss Chocolates",
-                body: '"Handpicked Belgian and Swiss chocolates wrapped in pure gold—just to celebrate the sweetest soul in the entire universe."'
+                body: '"Handpicked Swiss chocolates wrapped in pure gold—just to celebrate the wonderful birthday of such a special person."'
             },
             teddy: {
-                title: "🧸 Enchanted Fluffy Teddy",
-                body: '"Your personal cuddle bear! Whenever we are apart, give this little teddy a tight squeeze and remember how deeply I adore you."'
+                title: "🧸 Enchanted Birthday Teddy",
+                body: '"A cute birthday bear to bring smiles and warm wishes whenever you need a boost of cheer and happiness!"'
             },
             flowers: {
-                title: "🌹 Eternal Bouquet of Roses",
-                body: '"Red roses for deep passion, pink tulips for eternal admiration, and cherry blossoms to celebrate your breathtaking natural beauty."'
+                title: "🌹 Eternal Bouquet of Flowers",
+                body: '"Vibrant lilies for joy, pink tulips for admiration, and cherry blossoms to celebrate your wonderful special day."'
             }
         };
 
@@ -130,13 +130,13 @@ class LuxuryGiftBoxController {
         }
 
         const ringQuestion = document.querySelector('.ring-question');
-        const ringButtons = document.querySelector('.ring-buttons');
+        const ringButtons = document.querySelector('.ring-buttons') || document.querySelector('.ring-actions');
 
         if (ringQuestion) {
-            ringQuestion.innerHTML = `🎉 She said YES! ("${answer}") ❤️<br><span style="font-size:1.1rem; color:#ffd700;">Our souls are bound in eternal love for all lifetimes to come, Aradhana!</span>`;
+            ringQuestion.innerHTML = `🎉 Thank you! ("${answer}") ✨<br><span style="font-size:1.1rem; color:#ffd700;">Here's to an incredible year ahead filled with happiness, success, and celebrations, Aradhana!</span>`;
         }
         if (ringButtons) {
-            ringButtons.innerHTML = `<button class="btn-primary glow-effect" onclick="document.getElementById('ring-modal').classList.add('hidden')">Celebrate Our Love! 🎆</button>`;
+            ringButtons.innerHTML = `<button class="btn-primary glow-effect" onclick="document.getElementById('ring-modal').classList.add('hidden')">Celebrate Birthday! 🎆</button>`;
         }
     }
 }
