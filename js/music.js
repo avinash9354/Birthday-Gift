@@ -11,11 +11,22 @@ class RomanticAudioEngine {
         this.visualizerCanvas = document.getElementById('music-visualizer-canvas');
         this.visualizerCtx = this.visualizerCanvas ? this.visualizerCanvas.getContext('2d') : null;
         
-        const audioPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
-        this.bgMusic = new Audio(audioPath);
+        const rawPath = 'assets/music/Happy Birthday To You Ji - Funny Hindi Birthday Song (Part 1) - Funzoa Mimi Teddy, Krsna Solo - Funzoa (128k).mp3';
+        const encodedPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
+        
+        this.bgMusic = new Audio(rawPath);
         this.bgMusic.loop = true;
         this.bgMusic.volume = this.volume;
-        this.mediaSource = null;
+        this.bgMusic.preload = 'auto';
+
+        this.bgMusic.addEventListener('error', () => {
+            console.warn('Attempting URL encoded audio path...');
+            if (this.bgMusic.src.indexOf('%20') === -1) {
+                this.bgMusic.src = encodedPath;
+                this.bgMusic.load();
+                if (this.isPlaying) this.bgMusic.play().catch(() => {});
+            }
+        });
 
         this.initEventListeners();
     }
@@ -33,7 +44,7 @@ class RomanticAudioEngine {
                 if (this.masterGain && this.ctx) {
                     this.masterGain.gain.setTargetAtTime(this.volume, this.ctx.currentTime, 0.1);
                 }
-                if (this.bgMusic && !this.mediaSource) {
+                if (this.bgMusic) {
                     this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
                 }
             });
@@ -52,17 +63,6 @@ class RomanticAudioEngine {
             
             this.masterGain.connect(this.analyser);
             this.analyser.connect(this.ctx.destination);
-
-            if (this.bgMusic && !this.mediaSource) {
-                try {
-                    this.mediaSource = this.ctx.createMediaElementSource(this.bgMusic);
-                    this.mediaSource.connect(this.masterGain);
-                    this.bgMusic.volume = 1.0;
-                } catch (e) {
-                    console.log('MediaElementSource connection error (falling back to direct audio):', e);
-                    this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
-                }
-            }
 
             this.startVisualizer();
         }
@@ -90,8 +90,23 @@ class RomanticAudioEngine {
         }
 
         if (this.bgMusic) {
+            this.bgMusic.volume = Math.min(1, Math.max(0, this.volume));
             this.bgMusic.play().catch(err => {
                 console.log('Playback prevented or waiting for interaction:', err);
+                const resumeOnAction = () => {
+                    if (this.isPlaying && this.bgMusic.paused) {
+                        this.bgMusic.play().catch(() => {});
+                    }
+                    if (this.ctx && this.ctx.state === 'suspended') {
+                        this.ctx.resume();
+                    }
+                    document.removeEventListener('click', resumeOnAction);
+                    document.removeEventListener('keydown', resumeOnAction);
+                    document.removeEventListener('touchstart', resumeOnAction);
+                };
+                document.addEventListener('click', resumeOnAction);
+                document.addEventListener('keydown', resumeOnAction);
+                document.addEventListener('touchstart', resumeOnAction);
             });
         }
     }
@@ -205,22 +220,41 @@ class RomanticAudioEngine {
     // AUDIO VISUALIZER (60 FPS Canvas)
     // ==========================================
     startVisualizer() {
-        if (!this.visualizerCtx || !this.analyser) return;
-        const bufferLength = this.analyser.frequencyBinCount;
+        if (!this.visualizerCtx || !this.visualizerCanvas) return;
+        const bufferLength = this.analyser ? this.analyser.frequencyBinCount : 32;
         const dataArray = new Uint8Array(bufferLength);
 
         const draw = () => {
             requestAnimationFrame(draw);
-            this.analyser.getByteFrequencyData(dataArray);
+
+            let hasAudioData = false;
+            if (this.analyser) {
+                this.analyser.getByteFrequencyData(dataArray);
+                for (let i = 0; i < bufferLength; i++) {
+                    if (dataArray[i] > 10) {
+                        hasAudioData = true;
+                        break;
+                    }
+                }
+            }
 
             this.visualizerCtx.clearRect(0, 0, this.visualizerCanvas.width, this.visualizerCanvas.height);
 
             const barWidth = (this.visualizerCanvas.width / bufferLength) * 2;
             let barHeight;
             let x = 0;
+            const time = Date.now() / 150;
 
             for (let i = 0; i < bufferLength; i++) {
-                barHeight = (dataArray[i] / 255) * this.visualizerCanvas.height;
+                if (hasAudioData) {
+                    barHeight = (dataArray[i] / 255) * this.visualizerCanvas.height;
+                } else if (this.isPlaying && this.bgMusic && !this.bgMusic.paused) {
+                    const wave = Math.sin(time + i * 0.4) * 0.5 + 0.5;
+                    const wave2 = Math.cos(time * 1.5 - i * 0.25) * 0.5 + 0.5;
+                    barHeight = (wave * 0.6 + wave2 * 0.4) * this.visualizerCanvas.height * (this.volume || 0.75);
+                } else {
+                    barHeight = 2;
+                }
 
                 // Color gradient based on bar height
                 this.visualizerCtx.fillStyle = `rgb(${255}, ${Math.max(56, 255 - barHeight * 6)}, ${Math.max(129, 255 - barHeight * 3)})`;
