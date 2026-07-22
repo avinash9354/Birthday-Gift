@@ -80,6 +80,8 @@
         border: 1px solid rgba(56, 182, 255, 0.35);
         box-shadow: 0 4px 16px rgba(0, 0, 0, 0.45);
         align-items: center;
+        gap: 0.5rem;
+        flex-wrap: wrap;
     }
     .mobile-brand-header span {
         font-family: var(--font-script-luxury);

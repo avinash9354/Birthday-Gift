@@ -542,6 +542,15 @@ html[data-theme="day-romantic"] .btn-secondary {
 /* ==========================================================================
    Page 1: Welcome Section
    ========================================================================== */
+.hero-top-row {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 1.5rem;
+}
+
 .hero-badge {
     display: inline-block;
     padding: 0.5rem 1.4rem;
@@ -551,7 +560,49 @@ html[data-theme="day-romantic"] .btn-secondary {
     color: var(--color-rose-gold-light);
     font-size: 0.95rem;
     font-weight: 500;
-    margin-bottom: 1.5rem;
+    margin-bottom: 0;
+}
+
+.visitor-counter-card {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.5rem 1.4rem;
+    border-radius: 50px;
+    background: rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 215, 0, 0.45);
+    box-shadow: 0 0 15px rgba(255, 215, 0, 0.15);
+    backdrop-filter: blur(10px);
+    color: var(--color-white);
+    font-size: 0.95rem;
+    font-weight: 500;
+    margin-bottom: 0;
+}
+
+.vc-num {
+    color: #ffd700;
+    font-weight: 800;
+    font-size: 1.1rem;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.6);
+}
+
+.visitor-counter-pill {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.35rem;
+    padding: 0.25rem 0.75rem;
+    border-radius: 30px;
+    background: rgba(255, 215, 0, 0.12);
+    border: 1px solid rgba(255, 215, 0, 0.35);
+    color: #ffd700;
+    font-size: 0.8rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+}
+
+.visitor-counter-pill strong {
+    color: #ffffff;
+    font-weight: 800;
 }
 
 .main-heading {

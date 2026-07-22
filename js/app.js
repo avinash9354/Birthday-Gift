@@ -59,8 +59,56 @@ class BirthdayAppController {
             this.themeToggleBtn.addEventListener('click', () => this.toggleDayNightTheme());
         }
 
+        // Initialize Live Global Visitor Counter
+        this.initVisitorCounter();
+
         // Start continuous background floating elements generator
         this.startFloatingElementsGenerator();
+    }
+
+    initVisitorCounter() {
+        const heroCounter = document.getElementById('global-visitor-count-hero');
+        const navCounter = document.getElementById('global-visitor-count-nav');
+        const mobileCounter = document.getElementById('global-visitor-count-mobile');
+
+        // Check local storage for base tracking & persistence
+        let baseCount = parseInt(localStorage.getItem('aradhana_guest_count')) || 128;
+        const hasVisited = localStorage.getItem('aradhana_visited_flag');
+        if (!hasVisited) {
+            baseCount += 1;
+            localStorage.setItem('aradhana_guest_count', baseCount);
+            localStorage.setItem('aradhana_visited_flag', 'true');
+        }
+
+        const updateUI = (countVal) => {
+            const formatted = countVal.toLocaleString();
+            if (heroCounter) heroCounter.innerText = formatted;
+            if (navCounter) navCounter.innerText = formatted;
+            if (mobileCounter) mobileCounter.innerText = formatted;
+        };
+
+        // Display immediate count right away while network fetches
+        updateUI(baseCount);
+
+        // Fetch live global count across the internet using counterapi.dev
+        const namespace = 'aradhana-birthday-2026';
+        const key = 'visits';
+        const endpoint = !hasVisited
+            ? `https://api.counterapi.dev/v1/${namespace}/${key}/up`
+            : `https://api.counterapi.dev/v1/${namespace}/${key}/`;
+
+        fetch(endpoint)
+            .then(res => res.json())
+            .then(data => {
+                if (data && typeof data.count === 'number') {
+                    const totalCount = Math.max(baseCount, 128 + data.count);
+                    updateUI(totalCount);
+                    localStorage.setItem('aradhana_guest_count', totalCount);
+                }
+            })
+            .catch(err => {
+                console.log('Visitor counter API fallback active:', err);
+            });
     }
 
     runLoadingScreen() {
