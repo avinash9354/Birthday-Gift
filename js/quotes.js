@@ -1,3 +1,4 @@
+/**
  * 🎂 Aradhana Birthday Website - 50 Beautiful Birthday Blessings & Quotes Dataset & Generator
  * Guarantees zero continuous repetition and smooth fade transitions
  */

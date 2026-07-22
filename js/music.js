@@ -1,3 +1,4 @@
+/**
  * 🎂 Aradhana Birthday Website - Web Audio API & MP3 Birthday Symphony Generator & Audio Visualizer
  * Synthesizes multi-layered piano/synth ambient music + high-fidelity sound effects
  */
