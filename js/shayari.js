@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - 25 Hindi Romantic Shayari & 30 Positive Thoughts Manager
+ * 🎂 Roshu Birthday Website - 25 Hindi Romantic Shayari & 30 Positive Thoughts Manager
  * Features interactive typing animations and smooth slide transitions
  */
 
@@ -32,14 +32,14 @@ const HINDI_SHAYARI_DATA = [
 ];
 
 const POSITIVE_THOUGHTS_DATA = [
-    "Believe in the extraordinary magic inside you, Aradhana. The universe conspired to make you extraordinary.",
+    "Believe in the extraordinary magic inside you, Roshu. The universe conspired to make you extraordinary.",
     "Your kindness creates ripples of joy that touch everyone fortunate enough to cross your path.",
     "Every day is a fresh blank canvas, and your beautiful heart is the brush that paints it with joy.",
     "You possess an inner strength and grace that can overcome any storm with a smile.",
     "Never underestimate the light you bring into this world simply by being unapologetically yourself.",
     "Your dreams are valid, powerful, and destined to materialize into wonderful reality.",
     "Shine bright like the diamond you are. Your potential has absolutely no boundaries.",
-    "The world is a much kinder, warmer, and more vibrant place because Aradhana is in it.",
+    "The world is a much kinder, warmer, and more vibrant place because Roshu is in it.",
     "Every step you take forward is a step closer to your grandest aspirations and desires.",
     "Your heart is a sanctuary of pure kindness, and that purity attracts infinite blessings to you.",
     "Embrace the magic of today. You are cherished deeply by all your family and friends.",
@@ -61,7 +61,7 @@ const POSITIVE_THOUGHTS_DATA = [
     "Every new year of your life adds another layer of wisdom, elegance, and pure enchantment.",
     "You don't need magic to be special; your authentic soul is the greatest magic of all.",
     "May your thoughts always be peaceful, your heart joyful, and your path illuminated with blessings.",
-    "Aradhana, you are a living, breathing masterpiece of pure joy and happiness."
+    "Roshu, you are a living, breathing masterpiece of pure joy and happiness."
 ];
 
 class ShayariAndThoughtsController {
@@ -80,7 +80,7 @@ class ShayariAndThoughtsController {
         this.nextThoughtBtn = document.getElementById('next-thought-btn');
 
         this.typingLetterEl = document.getElementById('typing-letter');
-        this.letterText = `Dearest Aradhana,\n\nOn this wonderful day of July 22nd, 2026, we celebrate the birthday of a truly extraordinary and kind-hearted person. From the warmth of your smile to the positive energy you bring wherever you go, you are a blessing to your family, friends, and everyone lucky enough to know you.\n\nYou have a heart full of compassion, a mind full of brilliant ideas, and a spirit that inspires those around you. Your dedication, grace, and cheerfulness make every celebration brighter and every challenge easier to overcome.\n\nAs you step into another glorious year of life, we wish you boundless happiness, great health, and ultimate success in all your endeavors. May every dream you hold dear turn into reality, and may you continue to shine with confident grace.\n\nHappy Birthday, Aradhana! May your special day and the entire year ahead be filled with wonderful memories and joyous moments shared with your loved ones. ✨🎉`;
+        this.letterText = `Dearest Roshu,\n\nOn this wonderful day of July 22nd, 2026, we celebrate the birthday of a truly extraordinary and kind-hearted person. From the warmth of your smile to the positive energy you bring wherever you go, you are a blessing to your family, friends, and everyone lucky enough to know you.\n\nYou have a heart full of compassion, a mind full of brilliant ideas, and a spirit that inspires those around you. Your dedication, grace, and cheerfulness make every celebration brighter and every challenge easier to overcome.\n\nAs you step into another glorious year of life, we wish you boundless happiness, great health, and ultimate success in all your endeavors. May every dream you hold dear turn into reality, and may you continue to shine with confident grace.\n\nMy Love, Roshu! May your birthday and the entire year ahead be filled with wonderful memories and joyous moments shared with your loved ones. ✨🎉`;
         this.isTypingLetter = false;
 
         this.init();
@@ -205,9 +205,9 @@ class ShayariAndThoughtsController {
         const diaryFlipBtn = document.getElementById('diary-flip-btn');
         const diaryContent = document.getElementById('diary-page-content');
         const diaryEntries = [
-            { title: "Diary Entry #1: The Smile That Changed My World", text: '"Whenever you smile, Aradhana, the entire room lights up. It is as if the stars decided to reside in your eyes. Today on your birthday, I reaffirm my promise to cherish every heartbeat we share."' },
+            { title: "Diary Entry #1: The Smile That Changed My World", text: '"Whenever you smile, Roshu, the entire room lights up. It is as if the stars decided to reside in your eyes. Today on your birthday, I reaffirm my promise to cherish every heartbeat we share."' },
             { title: "Diary Entry #2: The Magic of Your Voice", text: '"Listening to you speak brings a profound serenity to my spirit. Whether we are discussing grand future dreams or sharing quiet moments, every second with you is precious golden treasure."' },
-            { title: "Diary Entry #3: My Eternal Gratitude", text: '"I thank destiny every single day for bringing you into my life. You make me a better person simply by loving me. Happy Birthday, my angel!"' }
+            { title: "Diary Entry #3: My Eternal Gratitude", text: '"I thank destiny every single day for bringing you into my life. You make me a better person simply by loving me. My Love, my angel!"' }
         ];
         let diaryIndex = 0;
 

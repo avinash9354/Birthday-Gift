@@ -1,13 +1,13 @@
-# 🎂 Aradhana Birthday Website – Developer & User Guide
+# 🎂 Roshu Birthday Website – Developer & User Guide
 
 # Project Title
-**"Happy Birthday My Love ❤️ - Aradhana"**
+**"My Love My Love ❤️ - Roshu"**
 
 ---
 
 ## 🌟 Executive Summary & Objective
 
-This project is a **world-class, ultra-premium interactive animated Birthday Website** dedicated to **❤️ Aradhana ❤️** for her birthday on **22 July 2026**. Built entirely from the ground up using **HTML5, CSS3, Vanilla JavaScript, and high-performance HTML5 Canvas APIs**, it delivers an unforgettable Disney + Apple + Pixar style emotional love experience.
+This project is a **world-class, ultra-premium interactive animated Birthday Website** dedicated to **❤️ Roshu ❤️** for her birthday on **22 July 2026**. Built entirely from the ground up using **HTML5, CSS3, Vanilla JavaScript, and high-performance HTML5 Canvas APIs**, it delivers an unforgettable Disney + Apple + Pixar style emotional love experience.
 
 When opened, the website immediately immerses the visitor in an aurora-lit wonderland where every mouse movement, click, and page navigation generates cinematic micro-interactions, floating hearts, and multi-layered synthesized romantic symphonies.
 
@@ -31,10 +31,10 @@ When opened, the website immediately immerses the visitor in an aurora-lit wonde
 1. **Welcome (`#page-welcome`)**: Large glowing animated script headings, live clock, and exact countdown timer to **22 July 2026**. Automatically celebrates when the birthday arrives!
 2. **Love Letter & Diary (`#page-letter`)**: Secret password protection lock screen (unlock with password or single click), typing animation for love letters, Hindi romantic shayaris, and an interactive flipbook diary.
 3. **Memory Gallery (`#page-gallery`)**: 3D Polaroid & photo frame cards with tilt hover animations (`--tilt-angle`), category filtering (`All Moments`, `Romantic`, `Smiles`, `Dreams`), and a responsive Lightbox preview.
-4. **Royal Gift Opening (`#page-gift`)**: Interactive 3D gift box with ribbon lift animation. Clicking triggers confetti rain and unlocks 6 luxury surprises, including a **Virtual Diamond Ring Proposal modal (`#ring-modal`)** where Aradhana can say *YES*!
+4. **Royal Gift Opening (`#page-gift`)**: Interactive 3D gift box with ribbon lift animation. Clicking triggers confetti rain and unlocks 6 luxury surprises, including a **Virtual Diamond Ring Proposal modal (`#ring-modal`)** where Roshu can say *YES*!
 5. **Constellation of Wishes (`#page-wishes`)**: 20 locked birthday wish cards (`🔒` to `🔓`), 30 positive thoughts with sequential navigation, and a 50 romantic quotes generator with fade transitions.
 6. **Our Love Timeline (`#page-timeline`)**: Vertical winding journey tracing 6 key milestones with scroll-driven intersection observer animations and glowing progress bar.
-7. **The Grand Celebration (`#page-celebration`)**: Interactive 3D birthday cake with lit flickering candles (`🕯️`). Includes **Microphone Candle Blow detection** using `navigator.mediaDevices.getUserMedia` & `AudioContext` wind analysis (`#mic-blow-btn`), plus a click fallback. Also features interactive cake cutting (`#cut-cake-btn`), grand canvas fireworks, floating balloons with names (`Aradhana ❤️`, `Queen of My Heart`), and a **Downloadable Memory Postcard generator (`#download-btn`)** that draws a custom postcard on canvas and exports it as a PNG image!
+7. **The Grand Celebration (`#page-celebration`)**: Interactive 3D birthday cake with lit flickering candles (`🕯️`). Includes **Microphone Candle Blow detection** using `navigator.mediaDevices.getUserMedia` & `AudioContext` wind analysis (`#mic-blow-btn`), plus a click fallback. Also features interactive cake cutting (`#cut-cake-btn`), grand canvas fireworks, floating balloons with names (`Roshu ❤️`, `Queen of My Heart`), and a **Downloadable Memory Postcard generator (`#download-btn`)** that draws a custom postcard on canvas and exports it as a PNG image!
 
 ---
 
@@ -113,7 +113,7 @@ You can also directly open `index.html` in Google Chrome, Safari, or Firefox (`f
    }
    ```
 3. **Modifying Secret Vault Password**:
-   Open `js/shayari.js` and `index.html`. By default, clicking `Quick Unlock with Love ❤️` or entering any secret code will unlock the letters so Aradhana can never be locked out! You can add strict password matching in `setupLetterTypingTriggers()` if desired.
+   Open `js/shayari.js` and `index.html`. By default, clicking `Quick Unlock with Love ❤️` or entering any secret code will unlock the letters so Roshu can never be locked out! You can add strict password matching in `setupLetterTypingTriggers()` if desired.
 
 ---
 
@@ -122,4 +122,4 @@ You can also directly open `index.html` in Google Chrome, Safari, or Firefox (`f
 - **Memory Management**: Canvas particle arrays (`cursor.js`, `fireworks.js`) are auto-cleaned (`splice` when alpha <= 0 or off-screen) to prevent memory leaks during extended celebrations.
 - **Accessibility**: Includes `@media (prefers-reduced-motion: reduce)` rules for users sensitive to motion.
 
-**Final Mission**: When `index.html` opens on 22 July 2026, Aradhana will immediately smile, feel loved, and cherish every single second of this magical experience! ❤️✨
+**Final Mission**: When `index.html` opens on 22 July 2026, Roshu will immediately smile, feel loved, and cherish every single second of this magical experience! ❤️✨

@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - 3D Polaroid Memory Gallery & Lightbox Controller
+ * 🎂 Roshu Birthday Website - 3D Polaroid Memory Gallery & Lightbox Controller
  * Synthesizes high-aesthetic celebration illustrations & supports instant photo drop-in
  */
 

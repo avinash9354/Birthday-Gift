@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - 60 FPS Canvas Fireworks, Confetti, Mic Candle Blow & Cake Cutter
+ * 🎂 Roshu Birthday Website - 60 FPS Canvas Fireworks, Confetti, Mic Candle Blow & Cake Cutter
  * Features microphone blow detection, cake slice animations, and downloadable memory postcard generator
  */
 
@@ -184,7 +184,7 @@ class FireworksAndCakeSystem {
         }
 
         // Launch custom floating balloons with names
-        const balloonNames = ["Aradhana ✨", "Happy Birthday! 🎂", "Joy & Happiness 🎉", "Best Wishes 🌸", "22 July 2026 ⭐"];
+        const balloonNames = ["Roshu ✨", "My Love! 🎂", "Joy & Happiness 🎉", "Best Wishes 🌸", "22 July 2026 ⭐"];
         balloonNames.forEach((text, i) => {
             setTimeout(() => {
                 this.balloons.push({
@@ -357,13 +357,13 @@ class FireworksAndCakeSystem {
         if (window.audioEngine) window.audioEngine.playBtnSound();
         if (navigator.share) {
             navigator.share({
-                title: "Happy Birthday Aradhana ✨",
-                text: "Experience this grand birthday celebration dedicated to Aradhana!",
+                title: "My Love Roshu ✨",
+                text: "Experience this grand birthday celebration dedicated to Roshu!",
                 url: window.location.href
             }).catch(() => {});
         } else {
             navigator.clipboard.writeText(window.location.href);
-            alert("✨ Celebration link copied to clipboard! Share it with Aradhana & family! 🎉");
+            alert("✨ Celebration link copied to clipboard! Share it with Roshu & family! 🎉");
         }
     }
 
@@ -397,14 +397,14 @@ class FireworksAndCakeSystem {
         ctx.textAlign = 'center';
         ctx.shadowBlur = 15;
         ctx.shadowColor = 'rgba(255, 215, 0, 0.8)';
-        ctx.fillText("Happy Birthday Aradhana ✨", canvas.width / 2, 170);
+        ctx.fillText("My Love Roshu ✨", canvas.width / 2, 170);
 
         // Name
         ctx.fillStyle = '#ffffff';
         ctx.font = 'bold 90px serif';
         ctx.shadowBlur = 20;
         ctx.shadowColor = '#ff3881';
-        ctx.fillText("Aradhana", canvas.width / 2, 310);
+        ctx.fillText("Roshu", canvas.width / 2, 310);
 
         // Date
         ctx.fillStyle = '#ff85b3';
@@ -414,7 +414,7 @@ class FireworksAndCakeSystem {
         // Quote
         ctx.fillStyle = '#fbe0dc';
         ctx.font = 'italic 34px serif';
-        ctx.fillText('"May your special day be surrounded with happiness,', canvas.width / 2, 510);
+        ctx.fillText('"May your birthday be surrounded with happiness,', canvas.width / 2, 510);
         ctx.fillText('filled with laughter, and wrapped in warm blessings."', canvas.width / 2, 570);
 
         // Hearts & Signature
@@ -423,7 +423,7 @@ class FireworksAndCakeSystem {
 
         // Download PNG link
         const link = document.createElement('a');
-        link.download = 'Aradhana_Birthday_Memory_2026.png';
+        link.download = 'Roshu_Birthday_Memory_2026.png';
         link.href = canvas.toDataURL('image/png');
         link.click();
     }

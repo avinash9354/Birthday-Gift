@@ -1,23 +1,23 @@
 /* ==========================================================================
-   🎂 Aradhana Birthday Website - Core Design Tokens & Luxury Style System
+   🎂 Roshu Birthday Website - Core Design Tokens & Luxury Style System
    Theme: Luxury Romantic (Pink, Rose Gold, Soft Red, Purple, Golden Glow & Light Sky Blue)
    ========================================================================== */
 
 :root {
-    /* Color Palette - Luxury Pink, Rose Gold & Celestial Sky Blue Aurora */
-    --color-bg-primary: #0f0516;
-    --color-bg-secondary: #1d0b2e;
+    /* Color Palette - Blue Pink Mix Love Theme */
+    --color-bg-primary: #0a0510;
+    --color-bg-secondary: #1a0a20;
     --color-pink-soft: #ff85b3;
-    --color-pink-vibrant: #ff3881;
-    --color-rose-gold: #e8a598;
-    --color-rose-gold-light: #fbe0dc;
-    --color-gold-glow: #ffd700;
-    --color-purple-deep: #2c0e4a;
-    --color-purple-neon: #a855f7;
-    --color-red-romantic: #e11d48;
-    --color-sky-blue: #38b6ff;
-    --color-sky-blue-light: #a6e3e9;
-    --color-azure-glow: #00f2fe;
+    --color-pink-vibrant: #ff1493;
+    --color-rose-gold: #ff69b4;
+    --color-rose-gold-light: #ffb6c1;
+    --color-gold-glow: #ff00ff;
+    --color-purple-deep: #4b0082;
+    --color-purple-neon: #8a2be2;
+    --color-red-romantic: #ff007f;
+    --color-sky-blue: #00ffff;
+    --color-sky-blue-light: #87cefa;
+    --color-azure-glow: #1e90ff;
     
     /* Typography */
     --font-script-luxury: 'Great Vibes', 'Dancing Script', cursive;
@@ -66,6 +66,11 @@ html, body {
     height: 100%;
     overflow-x: hidden;
     background-color: var(--color-bg-primary);
+    background-image: url('../assets/images/teddy_bg.png');
+    background-size: cover;
+    background-position: center;
+    background-attachment: fixed;
+    background-blend-mode: overlay;
     color: #ffffff;
     font-family: var(--font-body);
     transition: background-color 0.6s ease;
@@ -349,7 +354,7 @@ html[data-theme="day-romantic"] body {
     left: 50%;
     transform: translateX(-50%);
     z-index: 10000;
-    padding: 0.5rem 1.5rem;
+    padding: 0.5rem 1rem;
     border-radius: 50px;
     backdrop-filter: var(--glass-blur);
     background: var(--glass-bg);
@@ -357,23 +362,31 @@ html[data-theme="day-romantic"] body {
     box-shadow: var(--glass-shadow);
     display: flex;
     align-items: center;
-    gap: 2rem;
+    gap: 1rem;
     max-width: 95vw;
+}
+
+.nav-brand {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 1rem;
 }
 
 .nav-brand span {
     font-family: var(--font-script-luxury);
-    font-size: 1.5rem;
+    font-size: 1.3rem;
     background: var(--gradient-rose-gold);
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
     font-weight: 700;
+    white-space: nowrap;
 }
 
 .nav-pills {
     display: flex;
     list-style: none;
-    gap: 0.5rem;
+    gap: 0.2rem;
 }
 
 .nav-pill {
@@ -381,15 +394,15 @@ html[data-theme="day-romantic"] body {
     border: none;
     color: rgba(255, 255, 255, 0.75);
     font-family: var(--font-body);
-    font-size: 0.85rem;
+    font-size: 0.8rem;
     font-weight: 500;
-    padding: 0.5rem 1rem;
+    padding: 0.4rem 0.8rem;
     border-radius: 25px;
     cursor: pointer;
     transition: var(--transition-fast);
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.3rem;
 }
 
 .pill-icon {
@@ -428,7 +441,7 @@ html[data-theme="day-romantic"] .nav-pill {
     visibility: hidden;
     pointer-events: none;
     overflow-y: auto;
-    padding: 110px 2rem 100px;
+    padding: 130px 2rem 100px;
     display: flex;
     justify-content: center;
     align-items: flex-start;
@@ -613,14 +626,14 @@ html[data-theme="day-romantic"] .btn-secondary {
 
 .script-subtitle {
     font-family: var(--font-script-luxury);
-    font-size: 3.5rem;
+    font-size: 2.5rem;
     color: var(--color-rose-gold);
     line-height: 1.1;
 }
 
 .hero-name {
     font-family: var(--font-serif-title);
-    font-size: 5rem;
+    font-size: 4rem;
     font-weight: 900;
     letter-spacing: 2px;
     background: var(--gradient-luxury);

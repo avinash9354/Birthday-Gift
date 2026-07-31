@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - Luxury 3D Gift Box & Ring Proposal Manager
+ * 🎂 Roshu Birthday Website - Luxury 3D Gift Box & Ring Proposal Manager
  * Handles ribbon opening animations, surprise reveals, and interactive ring proposal flow
  */
 
@@ -86,11 +86,11 @@ class LuxuryGiftBoxController {
         const messages = {
             message: {
                 title: "💌 Surprise Birthday Message",
-                body: '"Aradhana, every single day spent with you is a blessing to everyone around you. You bring harmony, positive energy, and happiness to all your family and friends. Thank you for being you."'
+                body: '"Roshu, every single day spent with you is a blessing to everyone around you. You bring harmony, positive energy, and happiness to all your family and friends. Thank you for being you."'
             },
             card: {
                 title: "👑 Royal Birthday Card",
-                body: '"To Aradhana: May all your grandest dreams come true, may your heart forever overflow with serenity, and may your smile remain bright always."'
+                body: '"To Roshu: May all your grandest dreams come true, may your heart forever overflow with serenity, and may your smile remain bright always."'
             },
             chocolate: {
                 title: "🍫 Sweetest Swiss Chocolates",
@@ -102,7 +102,7 @@ class LuxuryGiftBoxController {
             },
             flowers: {
                 title: "🌹 Eternal Bouquet of Flowers",
-                body: '"Vibrant lilies for joy, pink tulips for admiration, and cherry blossoms to celebrate your wonderful special day."'
+                body: '"Vibrant lilies for joy, pink tulips for admiration, and cherry blossoms to celebrate your wonderful birthday."'
             }
         };
 
@@ -133,7 +133,7 @@ class LuxuryGiftBoxController {
         const ringButtons = document.querySelector('.ring-buttons') || document.querySelector('.ring-actions');
 
         if (ringQuestion) {
-            ringQuestion.innerHTML = `🎉 Thank you! ("${answer}") ✨<br><span style="font-size:1.1rem; color:#ffd700;">Here's to an incredible year ahead filled with happiness, success, and celebrations, Aradhana!</span>`;
+            ringQuestion.innerHTML = `🎉 Thank you! ("${answer}") ✨<br><span style="font-size:1.1rem; color:#ffd700;">Here's to an incredible year ahead filled with happiness, success, and celebrations, Roshu!</span>`;
         }
         if (ringButtons) {
             ringButtons.innerHTML = `<button class="btn-primary glow-effect" onclick="document.getElementById('ring-modal').classList.add('hidden')">Celebrate Birthday! 🎆</button>`;

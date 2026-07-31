@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - 50 Beautiful Birthday Blessings & Quotes Dataset & Generator
+ * 🎂 Roshu Birthday Website - 50 Beautiful Birthday Blessings & Quotes Dataset & Generator
  * Guarantees zero continuous repetition and smooth fade transitions
  */
 
@@ -11,12 +11,12 @@ const ROMANTIC_QUOTES_DATA = [
     { text: "Your smile brightens the world and your kindness inspires everyone who knows you.", author: "Family Wishes" },
     { text: "May all the joy you have spread in the past come back to bless you on this wonderful day.", author: "Birthday Blessings" },
     { text: "Life is a gorgeous canvas—paint every day with bright colors of happiness and laughter.", author: "Inspiration" },
-    { text: "May your special day be surrounded with happiness, filled with laughter, and wrapped in warmth.", author: "Best Wishes" },
+    { text: "May your birthday be surrounded with happiness, filled with laughter, and wrapped in warmth.", author: "Best Wishes" },
     { text: "Never stop dreaming, never stop growing, and never stop shining your extraordinary light.", author: "Inspiration" },
     { text: "You bring so much cheer and positive energy to your family and friends every day.", author: "Family Wishes" },
     { text: "May the year ahead bring you success, good health, and wonderful new adventures.", author: "Birthday Blessings" },
     { text: "A birthday is not just another year older, but another year wiser, stronger, and more wonderful.", author: "Wisdom" },
-    { text: "May every moment of your special day be filled with the same joy you bring to others.", author: "Best Wishes" },
+    { text: "May every moment of your birthday be filled with the same joy you bring to others.", author: "Best Wishes" },
     { text: "Your genuine heart and caring spirit make you one of the most cherished people in the world.", author: "Family Wishes" },
     { text: "Shine on, beautiful soul! The universe has incredible things planned for your future.", author: "Inspiration" },
     { text: "May your birthday mark the beginning of a year full of grand accomplishments and happiness.", author: "Birthday Blessings" },
@@ -25,7 +25,7 @@ const ROMANTIC_QUOTES_DATA = [
     { text: "May today be the start of a wonderful journey that leads you to your highest goals.", author: "Best Wishes" },
     { text: "You are a living proof that kindness, dedication, and grace can make the world a better place.", author: "Family Wishes" },
     { text: "Let your smile change the world, but never let the world change your beautiful smile.", author: "Inspiration" },
-    { text: "May God shower you with abundant health, prosperity, and peace on your special day.", author: "Divine Blessings" },
+    { text: "May God shower you with abundant health, prosperity, and peace on your birthday.", author: "Divine Blessings" },
     { text: "You have a remarkable way of making every occasion feel special and full of cheer.", author: "Family Wishes" },
     { text: "Celebrate all that you are today and all the amazing things you will accomplish tomorrow.", author: "Inspiration" },
     { text: "May your path be always illuminated by hope, wisdom, and the love of your family.", author: "Birthday Blessings" },
@@ -53,7 +53,7 @@ const ROMANTIC_QUOTES_DATA = [
     { text: "May the candles on your cake burn brightly with hopes that come true in the year ahead.", author: "Birthday Blessings" },
     { text: "You have an extraordinary spirit that touches everyone lucky enough to know you.", author: "Family Wishes" },
     { text: "Here is to another year of laughing together, celebrating big milestones, and making great memories.", author: "Best Wishes" },
-    { text: "May your 2026 birthday be as wonderful, vibrant, and special as you truly are, Aradhana!", author: "Family & Friends" }
+    { text: "May your 2026 birthday be as wonderful, vibrant, and special as you truly are, Roshu!", author: "Family & Friends" }
 ];
 
 class RomanticQuotesManager {

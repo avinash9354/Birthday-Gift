@@ -1,5 +1,5 @@
 /* ==========================================================================
-   🎂 Aradhana Birthday Website - 60 FPS GPU-Accelerated Animations
+   🎂 Roshu Birthday Website - 60 FPS GPU-Accelerated Animations
    ========================================================================== */
 
 /* Aurora Background Waves */
@@ -154,11 +154,25 @@
     animation: gradientShift 6s ease infinite;
 }
 
-/* Accessibility: Reduced Motion Support */
-@media (prefers-reduced-motion: reduce) {
-    * {
-        animation-duration: 0.01ms !important;
-        animation-iteration-count: 1 !important;
-        transition-duration: 0.01ms !important;
     }
+}
+
+/* Rose Hover Animation */
+@keyframes roseHover {
+    0% { transform: scale(1) translateY(0); filter: brightness(1) drop-shadow(0 0 5px rgba(255, 105, 180, 0.5)); }
+    50% { transform: scale(1.1) translateY(-5px); filter: brightness(1.2) drop-shadow(0 0 15px rgba(255, 20, 147, 0.8)); }
+    100% { transform: scale(1) translateY(0); filter: brightness(1) drop-shadow(0 0 5px rgba(255, 105, 180, 0.5)); }
+}
+.rose-hover:hover {
+    animation: roseHover 1s infinite ease-in-out;
+    cursor: pointer;
+}
+
+/* Scroll Time Popup Animation */
+@keyframes scrollPopup {
+    0% { transform: translateY(50px); opacity: 0; }
+    100% { transform: translateY(0); opacity: 1; }
+}
+.scroll-popup {
+    animation: scrollPopup 0.8s ease forwards;
 }

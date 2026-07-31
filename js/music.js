@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - Web Audio API & MP3 Birthday Symphony Generator & Audio Visualizer
+ * 🎂 Roshu Birthday Website - Web Audio API & MP3 Birthday Symphony Generator & Audio Visualizer
  * Synthesizes multi-layered piano/synth ambient music + high-fidelity sound effects
  */
 
@@ -12,8 +12,8 @@ class RomanticAudioEngine {
         this.visualizerCanvas = document.getElementById('music-visualizer-canvas');
         this.visualizerCtx = this.visualizerCanvas ? this.visualizerCanvas.getContext('2d') : null;
         
-        const primaryPath = 'assets/music/birthday-song.mp3';
-        const fallbackPath = 'assets/music/Happy%20Birthday%20To%20You%20Ji%20-%20Funny%20Hindi%20Birthday%20Song%20(Part%201)%20-%20Funzoa%20Mimi%20Teddy,%20Krsna%20Solo%20-%20Funzoa%20(128k).mp3';
+        const primaryPath = 'assets/music/Tum Jo Aaye .mp3';
+        const fallbackPath = 'assets/music/Tum Jo Aaye .mp3';
         
         this.bgMusic = new Audio(primaryPath);
         this.bgMusic.loop = true;

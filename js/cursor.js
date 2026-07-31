@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - Custom Heart Cursor, Sparkle Trails & Magnetic Ripple
+ * 🎂 Roshu Birthday Website - Custom Heart Cursor, Sparkle Trails & Magnetic Ripple
  * 60 FPS Canvas Particle System & Magnetic Button Interaction
  */
 

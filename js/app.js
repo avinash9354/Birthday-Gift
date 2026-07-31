@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - Master App Controller & Page Navigation Engine
+ * 🎂 Roshu Birthday Website - Master App Controller & Page Navigation Engine
  * Orchestrates loading screen progress, 7-page cinematic navigation, day/night aurora themes, and floating elements
  */
 
@@ -25,15 +25,30 @@ class BirthdayAppController {
         // Start simulated loading screen progression
         this.runLoadingScreen();
 
+        // Add rose-hover class to interactive elements
+        document.querySelectorAll('.btn-primary, .btn-secondary, .nav-pill, .surprise-item, .wish-tab-btn').forEach(el => {
+            el.classList.add('rose-hover');
+        });
+
+        // Add scroll-popup logic
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('scroll-popup');
+                }
+            });
+        }, { threshold: 0.1 });
+        
+        document.querySelectorAll('.glass-card, .timeline-node, .surprise-item, .promise-stage').forEach(el => {
+            el.style.opacity = '0'; // hide initially
+            observer.observe(el);
+        });
+
         // Setup navigation bar pill clicks
         this.navPills.forEach(pill => {
             pill.addEventListener('click', () => {
                 if (window.audioEngine) window.audioEngine.playBtnSound();
                 const targetId = pill.getAttribute('data-target');
-                if (!window.isMidnightUnlocked && targetId !== 'page-welcome') {
-                    if (window.countdownManager) window.countdownManager.showLockModal();
-                    return;
-                }
                 this.navigateToPage(targetId);
             });
         });
@@ -41,11 +56,6 @@ class BirthdayAppController {
         // Setup "Begin Magical Journey" button on Welcome page
         if (this.beginJourneyBtn) {
             this.beginJourneyBtn.addEventListener('click', () => {
-                if (!window.isMidnightUnlocked) {
-                    if (window.audioEngine) window.audioEngine.playBtnSound();
-                    if (window.countdownManager) window.countdownManager.showLockModal();
-                    return;
-                }
                 if (window.audioEngine) {
                     window.audioEngine.playGiftSound();
                     window.audioEngine.startSymphony();
@@ -72,12 +82,12 @@ class BirthdayAppController {
         const mobileCounter = document.getElementById('global-visitor-count-mobile');
 
         // Check local storage for base tracking & persistence
-        let baseCount = parseInt(localStorage.getItem('aradhana_guest_count')) || 128;
-        const hasVisited = localStorage.getItem('aradhana_visited_flag');
+        let baseCount = parseInt(localStorage.getItem('roshu_guest_count')) || 128;
+        const hasVisited = localStorage.getItem('roshu_visited_flag');
         if (!hasVisited) {
             baseCount += 1;
-            localStorage.setItem('aradhana_guest_count', baseCount);
-            localStorage.setItem('aradhana_visited_flag', 'true');
+            localStorage.setItem('roshu_guest_count', baseCount);
+            localStorage.setItem('roshu_visited_flag', 'true');
         }
 
         const updateUI = (countVal) => {
@@ -91,7 +101,7 @@ class BirthdayAppController {
         updateUI(baseCount);
 
         // Fetch live global count across the internet using counterapi.dev
-        const namespace = 'aradhana-birthday-2026';
+        const namespace = 'roshu-birthday-2026';
         const key = 'visits';
         const endpoint = !hasVisited
             ? `https://api.counterapi.dev/v1/${namespace}/${key}/up`
@@ -103,7 +113,7 @@ class BirthdayAppController {
                 if (data && typeof data.count === 'number') {
                     const totalCount = Math.max(baseCount, 128 + data.count);
                     updateUI(totalCount);
-                    localStorage.setItem('aradhana_guest_count', totalCount);
+                    localStorage.setItem('roshu_guest_count', totalCount);
                 }
             })
             .catch(err => {
@@ -117,9 +127,9 @@ class BirthdayAppController {
         const loadingPhrases = [
             "Weaving aurora starlight & magical wishes...",
             "Gathering 50 inspiring blessings & 25 Hindi shayaris...",
-            "Lighting candles on Aradhana's royal cake...",
+            "Lighting candles on Roshu's royal cake...",
             "Tuning celestial piano harmonies...",
-            "Opening the gates of Aradhana's birthday wonderland..."
+            "Opening the gates of Roshu's birthday wonderland..."
         ];
 
         let progress = 0;

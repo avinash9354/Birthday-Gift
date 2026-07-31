@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - 20 Locked Wish Cards & Wishes/Quotes Tab Switcher
+ * 🎂 Roshu Birthday Website - 20 Locked Wish Cards & Wishes/Quotes Tab Switcher
  * Ensures only one card opens at a time with rich custom animations and sound effects
  */
 

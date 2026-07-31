@@ -1,5 +1,5 @@
 /**
- * 🎂 Aradhana Birthday Website - Animated Love Timeline Manager
+ * 🎂 Roshu Birthday Website - Animated Love Timeline Manager
  * Animate timeline nodes and progress bar with smooth intersection observer
  */
 
