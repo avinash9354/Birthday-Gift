@@ -4,31 +4,31 @@
  */
 
 const HINDI_SHAYARI_DATA = [
-    "तेरी मुस्कान से रोशन रहे यह दुनिया सारी,\nखुशियों से सजी रहे तेरी हर एक सुबह और शाम प्यारी।\nजन्मदिन की अनंत शुभकामनाएं आराधना,\nसदा हंसती रहे तू, यही है दुआ हमारी। ✨",
-    "खुदा ने तुझे बड़े प्यार से तराशा होगा,\nतेरे व्यक्तित्व में सितारों का नूर बांटा होगा।\nआज तेरे जन्मदिन पर सारा जहाँ मुस्कुराया है,\nकि ज़मीन पर एक अनमोल सितारा उतरा होगा। 🌟",
-    "तेरे होने से ही घर-परिवार में खुशियों का मेला है,\nतेरी सादगी और अच्छाई ने सबका दिल जीता है।\nजन्मदिन की अनंत बधाइयाँ प्यारी आराधना! 🎉",
+    "तेरी मुस्कान से रोशन रहे यह दुनिया सारी,\nखुशियों से सजी रहे तेरी हर एक सुबह और शाम प्यारी।\nख़ास दिन की अनंत शुभकामनाएं रोशू,\nसदा हंसती रहे तू, यही है दुआ हमारी। ✨",
+    "खुदा ने तुझे बड़े प्यार से तराशा होगा,\nतेरे व्यक्तित्व में सितारों का नूर बांटा होगा।\nआज तेरे ख़ास दिन पर सारा जहाँ मुस्कुराया है,\nकि ज़मीन पर एक अनमोल सितारा उतरा होगा। 🌟",
+    "तेरे होने से ही घर-परिवार में खुशियों का मेला है,\nतेरी सादगी और अच्छाई ने सबका दिल जीता है।\nख़ास दिन की अनंत बधाइयाँ प्यारी रोशू! 🎉",
     "दुआओं में हम सदा तुम्हारी खुशी मांगते हैं,\nतुम्हारे होठों पर हमेशा मुस्कान की लड़ी मांगते हैं।\nतुम जियो हज़ारों साल, हर साल हो बेमिसाल,\nहम खुदा से बस यही एक घड़ी मांगते हैं। 🌸",
-    "हवाओं ने भी आज तेरे नाम का गीत गाया है,\nसितारों ने आज आसमान में जश्न मनाया है।\nमुबारक हो तुम्हें यह खूबसूरत जन्मदिन,\nजो हम सबके जीवन में खुशियों की बहार लाया है। 🎂",
-    "तेरी हर कदम पर कामयाबी का पहरा हो,\nतेरे चेहरे पर सदा खुशियों का सेहरा हो।\nजन्मदिन की ढेर सारी शुभकामनाएं आराधना! ✨",
+    "हवाओं ने भी आज तेरे नाम का गीत गाया है,\nसितारों ने आज आसमान में जश्न मनाया है।\nमुबारक हो तुम्हें यह खूबसूरत ख़ास दिन,\nजो हम सबके जीवन में खुशियों की बहार लाया है। 🎂",
+    "तेरी हर कदम पर कामयाबी का पहरा हो,\nतेरे चेहरे पर सदा खुशियों का सेहरा हो।\nख़ास दिन की ढेर सारी शुभकामनाएं रोशू! ✨",
     "जब से तुम इस दुनिया में आई हो,\nहर सुबह ने एक नई रोशनी पाई है।\nसदा महकती रहो तुम यूँ ही गुलाब की तरह,\nहम सबके दिल से यही दुआ आई है। 🌹",
-    "तुम्हारी सोच और विचार हैं इतने सुंदर,\nजैसे खुशियों से भरा कोई गहरा समंदर।\nजन्मदिन मुबारक हो प्यारी आराधना! 👑",
-    "फूलों सा महकता रहे तुम्हारा हर सवेरा,\nसितारों सा चमकता रहे जीवन का हर डेरा।\nहैप्पी बर्थडे आराधना! 🎉",
+    "तुम्हारी सोच और विचार हैं इतने सुंदर,\nजैसे खुशियों से भरा कोई गहरा समंदर।\nख़ास दिन मुबारक हो प्यारी रोशू! 👑",
+    "फूलों सा महकता रहे तुम्हारा हर सवेरा,\nसितारों सा चमकता रहे जीवन का हर डेरा।\nहैप्पी ख़ास दिन रोशू! 🎉",
     "तुम हमारे परिवार का वह अनमोल गौरव हो,\nजिसके होने से हर तरफ खुशियों का उत्सव हो। 🌸",
-    "तेरे चेहरे की मुस्कान कभी कम ना हो,\nतेरी आँखों में कभी कोई नम ना हो।\nजन्मदिन की लाख-लाख बधाइयाँ आराधना! 💖",
-    "हर लम्हा खुशियों से भरा और सुहाना सा लगे,\nतुम्हारा हर एक बड़ा सपना पूरा सा लगे।\nहैप्पी बर्थडे आराधना! 💫",
-    "खुशियों का हर खजाना तुम्हारे कदमों में हो,\nदुनिया की हर कामयाबी तुम्हारे हक़ में हो।\nमुबारक हो तुम्हें यह जन्मदिन का प्यारा दिन! 🎂",
-    "तुम्हारी अच्छाई और मेहनत का हर कोई कायल है,\nतुम्हारी सादगी से हर एक दिल घायल है।\nजन्मदिन की हार्दिक शुभकामनाएं! 🌺",
+    "तेरे चेहरे की मुस्कान कभी कम ना हो,\nतेरी आँखों में कभी कोई नम ना हो।\nख़ास दिन की लाख-लाख बधाइयाँ रोशू! 💖",
+    "हर लम्हा खुशियों से भरा और सुहाना सा लगे,\nतुम्हारा हर एक बड़ा सपना पूरा सा लगे।\nहैप्पी ख़ास दिन रोशू! 💫",
+    "खुशियों का हर खजाना तुम्हारे कदमों में हो,\nदुनिया की हर कामयाबी तुम्हारे हक़ में हो।\nमुबारक हो तुम्हें यह ख़ास दिन का प्यारा दिन! 🎂",
+    "तुम्हारी अच्छाई और मेहनत का हर कोई कायल है,\nतुम्हारी सादगी से हर एक दिल घायल है।\nख़ास दिन की हार्दिक शुभकामनाएं! 🌺",
     "तेरी हँसी हम सबकी सबसे बड़ी दौलत है,\nतेरी खुशी ही हम सबके लिए सबसे बड़ी जन्नत है। 🌹",
     "आसमान के सारे सितारे भी चमकते रहें तेरे आगे,\nसफलता के सारे रंग जुड़े रहें तेरे धागे। ✨",
     "तेरी बातों में जो सुकून और सच्चाई है,\nउसी ने तुझे सबसे अलग पहचान दिलाई है। 💖",
-    "जन्मदिन का यह पावन दिन बार-बार आए,\nतेरे जीवन में खुशियों की अनंत बहार लाए। 🎉",
+    "ख़ास दिन का यह पावन दिन बार-बार आए,\nतेरे जीवन में खुशियों की अनंत बहार लाए। 🎉",
     "जब भी देखते हैं तुम्हें, गर्व और बढ़ जाता है,\nयह मन तुम्हारी काबिलियत पर खुश हो जाता है। 😊",
     "हमारी हर दुआ का खूबसूरत लफ्ज़ हो तुम,\nइस परिवार की सबसे हसीन नज़्म हो तुम। 💐",
     "खुदा करे तुम्हारी हर तमन्ना पूरी हो जाए,\nकोई भी अच्छी ख्वाहिश कभी ना अधूरी रह जाए। 🌠",
     "तुम इस जीवन बगिया का वह खूबसूरत फूल हो,\nजिससे महक रहा हमारा हर एक उसूल हो। 🌸",
     "तेरी एक मुस्कान से सबका दिन बन जाता है,\nतेरी सफलता से हर किसी का सिर गर्व से उठ जाता है। ✨",
-    "कामयाबी की हर मंजिल पर तुम्हारा नाम हो,\nतुम्हारे हर कदम पर दुनिया का सलाम हो। हैप्पी बर्थडे आराधना! 👑",
-    "तेरे नाम से ही हम सबके जीवन में सवेरा है,\nखुदा करे तेरे जीवन में खुशियों का ही बसेरा है। जन्मदिन मुबारक आराधना! 🎉"
+    "कामयाबी की हर मंजिल पर तुम्हारा नाम हो,\nतुम्हारे हर कदम पर दुनिया का सलाम हो। हैप्पी ख़ास दिन रोशू! 👑",
+    "तेरे नाम से ही हम सबके जीवन में सवेरा है,\nखुदा करे तेरे जीवन में खुशियों का ही बसेरा है। ख़ास दिन मुबारक रोशू! 🎉"
 ];
 
 const POSITIVE_THOUGHTS_DATA = [
@@ -80,7 +80,7 @@ class ShayariAndThoughtsController {
         this.nextThoughtBtn = document.getElementById('next-thought-btn');
 
         this.typingLetterEl = document.getElementById('typing-letter');
-        this.letterText = `Dearest Roshu,\n\nOn this wonderful day of July 22nd, 2026, we celebrate the birthday of a truly extraordinary and kind-hearted person. From the warmth of your smile to the positive energy you bring wherever you go, you are a blessing to your family, friends, and everyone lucky enough to know you.\n\nYou have a heart full of compassion, a mind full of brilliant ideas, and a spirit that inspires those around you. Your dedication, grace, and cheerfulness make every celebration brighter and every challenge easier to overcome.\n\nAs you step into another glorious year of life, we wish you boundless happiness, great health, and ultimate success in all your endeavors. May every dream you hold dear turn into reality, and may you continue to shine with confident grace.\n\nMy Love, Roshu! May your birthday and the entire year ahead be filled with wonderful memories and joyous moments shared with your loved ones. ✨🎉`;
+        this.letterText = `Dearest Roshu,\n\nOn this wonderful day of July 22nd, 2026, we celebrate the special day of a truly extraordinary and kind-hearted person. From the warmth of your smile to the positive energy you bring wherever you go, you are a blessing to your family, friends, and everyone lucky enough to know you.\n\nYou have a heart full of compassion, a mind full of brilliant ideas, and a spirit that inspires those around you. Your dedication, grace, and cheerfulness make every celebration brighter and every challenge easier to overcome.\n\nAs you step into another glorious year of life, we wish you boundless happiness, great health, and ultimate success in all your endeavors. May every dream you hold dear turn into reality, and may you continue to shine with confident grace.\n\nMy Love, Roshu! May your special day and the entire year ahead be filled with wonderful memories and joyous moments shared with your loved ones. ✨🎉`;
         this.isTypingLetter = false;
 
         this.init();
@@ -205,7 +205,7 @@ class ShayariAndThoughtsController {
         const diaryFlipBtn = document.getElementById('diary-flip-btn');
         const diaryContent = document.getElementById('diary-page-content');
         const diaryEntries = [
-            { title: "Diary Entry #1: The Smile That Changed My World", text: '"Whenever you smile, Roshu, the entire room lights up. It is as if the stars decided to reside in your eyes. Today on your birthday, I reaffirm my promise to cherish every heartbeat we share."' },
+            { title: "Diary Entry #1: The Smile That Changed My World", text: '"Whenever you smile, Roshu, the entire room lights up. It is as if the stars decided to reside in your eyes. Today on your special day, I reaffirm my promise to cherish every heartbeat we share."' },
             { title: "Diary Entry #2: The Magic of Your Voice", text: '"Listening to you speak brings a profound serenity to my spirit. Whether we are discussing grand future dreams or sharing quiet moments, every second with you is precious golden treasure."' },
             { title: "Diary Entry #3: My Eternal Gratitude", text: '"I thank destiny every single day for bringing you into my life. You make me a better person simply by loving me. My Love, my angel!"' }
         ];
